@@ -19,3 +19,42 @@ a{
     text-decoration: none;
     color: #1f1e22;
 }
+
+.form{
+    padding: 1.5rem 1.5rem 2rem 1.5rem;
+    border-radius: 1rem;
+    background-color: #FEFCF0;
+    position: relative;
+}
+
+.labelForm{
+    font-size: .7rem;
+    font-family: "Source Sans 3", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.inputForm{
+    border: none;
+    background-color: #FEFCF0;
+    font-family: "Oswald", sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding: 0 0 .5rem 0;
+    width: 100%;
+    border-bottom: 1px solid #1f1e22;
+}
+
+.btnForm{
+    position: absolute;
+    bottom: -2rem;
+    background-color: #8bd0fc;
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    border-radius: 1.5rem;
+    font-family: "Source Sans 3", sans-serif;
+    color: #1f1e22;
+    font-weight: 800;
+}
