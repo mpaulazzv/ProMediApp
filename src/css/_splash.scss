@@ -1,0 +1,95 @@
+
+#splash{
+    padding: 4rem 3rem 1rem 3rem;
+    margin: 0;
+    background-color: $black;
+}
+
+.splashTop{
+    margin-top: 1rem;
+    margin-bottom: 11rem;
+}
+
+.splashTitle{
+    font-size: 6rem;
+    font-family: $title;
+    margin-bottom: 0;
+    color: $white;
+    margin-top: 0;
+}
+
+.splashDesc{
+    margin-top: -1.2rem;
+    margin-left: .3rem;
+    font-family: $body;
+    color: $white;
+    font-size: .96rem;
+}
+
+.splashBottom{
+    z-index: 1;
+}
+
+a{
+    text-decoration: none;
+}
+
+.btnA{
+    margin-bottom: 1.5rem;
+    padding: .7rem 0 .7rem 0;
+    border-radius: 1.5rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: $primary;
+    font-family: "Source Sans 3", sans-serif;
+    color: $black;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.btnB{
+    margin-bottom: 1rem;
+    padding: .7rem 0 .7rem 0;
+    border-radius: 1.5rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: $secondary;
+    font-family: "Source Sans 3", sans-serif;
+    color: $black;
+    font-weight: 800;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.splashSkip{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-family: "Source Sans 3", sans-serif;
+    text-transform: uppercase;
+    font-size: .8rem;
+    color: $white;
+}
+
+.skipIcon{
+    width: 1rem;
+    color: $white;
+}
+
+.endLine{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.line{
+    display: block;
+    height: .3rem;
+    width: 45%;
+    border-radius: 1.5rem;
+    background-color: $white;
+}
