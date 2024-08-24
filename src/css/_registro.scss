@@ -1,0 +1,43 @@
+
+#registro{
+    padding: 1.5rem 3rem 1.5 3rem;
+    margin: 0;
+    height: 615px;
+    background-color: $primary;
+}
+
+.regMenu{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.arrowLogin{
+    height: 100%;
+    width: 1rem;  
+}
+
+.regMenu p{
+    font-size: .8rem;
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: 600;
+}
+
+.regTop{
+    margin: 0 0 2rem 0;
+}
+
+.regTitle{
+    font-size: 3rem;
+    font-family: "Oswald", sans-serif;
+    margin: 0;
+    color: #1f1e22;
+}
+
+.regDesc{
+    margin-top: -.5rem;
+    margin-left: .3rem;
+    font-family: "Source Sans 3", sans-serif;
+    color: #1f1e22;
+    font-size: .96rem;
+}
