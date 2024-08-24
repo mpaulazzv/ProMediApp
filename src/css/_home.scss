@@ -1,0 +1,129 @@
+
+#Home{
+    position: relative;
+    height: 615px;
+}
+
+.homeContent{
+    margin: 0;
+    padding: 1.5rem 3rem 0 3rem;
+    height: 100%;
+    background-color: $white;
+}
+
+.homeTop{
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.homeTitle{
+    font-size: 3.8rem;
+    font-family: $title;
+    margin: 0;
+    color: $black;
+}
+
+.homeDesc{
+    display: block;
+    margin-top: -.5rem;
+    font-family: $body;
+    color: $black;
+    font-size: .9rem;
+}
+
+.semAct{
+    margin: 0 0 2rem 0;
+    border-radius: .5rem;
+    background-color: $primary;
+    padding: 1rem 2rem;
+}
+
+.semTitle{
+    font-size: 1.3rem;
+    font-family: $title;   
+    margin: 0 0 1rem 0;
+}
+
+.semBottom{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.semDesc{
+    margin: 0;
+    font-family: $body;
+    color: $black;
+    font-size: .9rem;
+}
+
+.semImg{
+    width: 1.5rem;
+    transform: rotate(45deg);
+}
+
+.wrapper{
+    position: relative;
+    width: 100%;
+    margin: 0;
+}
+
+.semSlider{
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: mandatory;
+    scroll-behavior: smooth;
+    border-radius: .5rem;
+}
+
+.semOpc{
+    margin: 0;
+    flex: 1 0 45%;
+    border-radius: .5rem;
+    background-color: $primary;
+    padding: 1rem;
+    scroll-snap-align: start;
+}
+
+.opcTitle{
+    font-size: 1.1rem;
+    font-family: $title;   
+    margin: 0 0 .5rem 0;
+}
+
+.opcBottom{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.opcDesc{
+    margin: 0;
+    font-family: $body;
+    color: $black;
+    font-size: .8rem;
+}
+
+.opcImg{
+    width: 1.2rem;
+    transform: rotate(45deg);
+}
+
+.semAll{
+    margin: 0 0 0 0;
+    display: flex;
+    justify-content: start;
+    align-content: center;
+    gap: .2rem;
+}
+
+.semAll p{
+    font-family: $body;
+    color: $black;
+    font-size: .8rem;
+}
+
+.allImg{
+    width: 1rem;
+}

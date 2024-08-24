@@ -18,7 +18,7 @@
 
 .loginMenu p{
     font-size: .8rem;
-    font-family: "Source Sans 3", sans-serif;
+    font-family: $body;
     font-weight: 600;
 }
 
@@ -28,15 +28,15 @@
 
 .loginTitle{
     font-size: 5rem;
-    font-family: "Oswald", sans-serif;
+    font-family: $title;
     margin: 0;
-    color: #1f1e22;
+    color: $black;
 }
 
 .loginDesc{
     margin-top: -.5rem;
     margin-left: .3rem;
-    font-family: "Source Sans 3", sans-serif;
-    color: #1f1e22;
+    font-family: $body;
+    color: $black;
     font-size: .96rem;
 }

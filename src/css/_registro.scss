@@ -19,7 +19,7 @@
 
 .regMenu p{
     font-size: .8rem;
-    font-family: "Source Sans 3", sans-serif;
+    font-family: $body;
     font-weight: 600;
 }
 
@@ -29,15 +29,15 @@
 
 .regTitle{
     font-size: 3rem;
-    font-family: "Oswald", sans-serif;
+    font-family: $title;
     margin: 0;
-    color: #1f1e22;
+    color: $black;
 }
 
 .regDesc{
     margin-top: -.5rem;
     margin-left: .3rem;
-    font-family: "Source Sans 3", sans-serif;
-    color: #1f1e22;
+    font-family: $body;
+    color: $black;
     font-size: .96rem;
 }
