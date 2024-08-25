@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.scss">
     <script src="./js/nav_main.js"></script>
+    <script src="./js/main.js"></script>
     <title>ProMedia</title>
 </head>
 
@@ -17,17 +18,17 @@
         </div>
         <div class="splashBottom">
             <div class="splashBnts">
-                <a href="#">
-                    <p class="btnA">Login</p>
+                <a >
+                    <p class="btnA" id="btn_login_splash">Login</p>
                 </a>
-                <a href="#">
-                    <p class="btnB">Registro</p>
+                <a >
+                    <p class="btnB" id="btn_registro_splash">Registro</p>
                 </a>
             </div>
         </div>
-        <a href="#">
-            <div class="splashSkip">
-                <p class="pSkip">Saltar</p>
+        <a >
+            <div  class="splashSkip">
+                <p id="btn_Home_splash" class="pSkip">Saltar</p>
                 <img src="./assets/arrow-1.svg" alt="skip" class="skipIcon">
             </div>
         </a>
@@ -37,9 +38,9 @@
     </section>
     <section id="login">
         <div class="loginMenu">
-            <a href="#"><img src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin"></a>
-            <a href="#">
-                <p>Registro</p>
+            <a class="volver_splash" ><img src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin"></a>
+            <a>
+                <p id="btn_registro_login">Registro</p>
             </a>
         </div>
         <div class="loginTop">
@@ -51,14 +52,14 @@
             <input type="text" placeholder="Ingrese usuario" class="inputForm">
             <p class="labelForm">Contraseña</p>
             <input type="password" placeholder="Ingrese contraseña" class="inputForm">
-            <p class="btnForm">Login</p>
+            <p id="btn_Home_login" class="btnForm">Login</p>
         </div>
     </section>
     <section id="registro">
         <div class="regMenu">
-            <a href="#"><img src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin"></a>
-            <a href="#">
-                <p>Login</p>
+            <a class= "volver_splash" ><img src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin"></a>
+            <a >
+                <p id= "btn_login_registro">Login</p>
             </a>
         </div>
         <div class="regTop">
@@ -76,7 +77,7 @@
             <input type="password" placeholder="Ingrese contraseña" class="inputForm">
             <p class="labelForm">Confirmar Contraseña</p>
             <input type="password" placeholder="Ingrese contraseña" class="inputForm">
-            <p class="btnForm">Login</p>
+            <p class="btnForm" id="btn_Home_registro">Crear cuenta</p>
         </div>
     </section>
     <section id="Home">
@@ -137,6 +138,7 @@
             </a>
         </div>
         <nav-main class="nav_home"></nav-main>
+    </section>
     <section id="semestre">
         <div class="semestreContent">
             <div class="semestreTop">
@@ -172,7 +174,7 @@
         </div>
         <nav-main class="nav_semestre"></nav-main>
     </section>
-    <section id="#materia">
+    <section id="materia">
         <div class="materia_content">
             <div class="materia_top">
                 <h1 class="titulo_materia">Materia</h1>
@@ -221,7 +223,7 @@
         </div>
         <nav-main class="nav_materia"></nav-main>
     </section>
-    <section id="crear_elemento">
+    <section id="crear_materia" class="crear_elemento">
         <div class="crear_elemento_content">
             <div class="div_crear_materia">
                 <div class="form form_crear_elemento">
@@ -242,7 +244,7 @@
             </div>
         </div>
     </section>
-    <section id="crear_elemento">
+    <section id="crear_semestre" class="crear_elemento">
         <div class="crear_elemento_content">
             <div class="div_crear_elemento">
                 <div class="form form_elemento">

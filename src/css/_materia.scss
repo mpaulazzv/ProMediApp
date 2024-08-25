@@ -5,7 +5,7 @@
 
 .materia_content{
     margin: 0;
-    padding: 1.5rem 2.5rem 0 2.5rem;
+    padding: 0.2rem 2.5rem 0 2.5rem;
     height: 100%;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .notas{
-    height: 200px;
+    height: 170px;
     overflow-y: scroll;
     overflow-x: hidden;
     margin-bottom: 1rem;
@@ -108,4 +108,5 @@
 
 .nav_materia{
     position: relative;
+    bottom: 4.9rem;
 }
