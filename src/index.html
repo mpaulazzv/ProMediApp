@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.scss">
     <title>ProMedia</title>
 </head>
+
 <body>
     <section id="splash">
         <div class="splashTop">
@@ -14,8 +16,12 @@
         </div>
         <div class="splashBottom">
             <div class="splashBnts">
-                <a href="#"> <p class="btnA">Login</p> </a>
-                <a href="#"><p class="btnB">Registro</p></a>
+                <a href="#">
+                    <p class="btnA">Login</p>
+                </a>
+                <a href="#">
+                    <p class="btnB">Registro</p>
+                </a>
             </div>
         </div>
         <a href="#">
@@ -31,7 +37,9 @@
     <section id="login">
         <div class="loginMenu">
             <a href="#"><img src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin"></a>
-            <a href="#"><p>Registro</p></a>
+            <a href="#">
+                <p>Registro</p>
+            </a>
         </div>
         <div class="loginTop">
             <p class="loginTitle">Login</p>
@@ -48,7 +56,9 @@
     <section id="registro">
         <div class="regMenu">
             <a href="#"><img src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin"></a>
-            <a href="#"><p>Login</p></a>
+            <a href="#">
+                <p>Login</p>
+            </a>
         </div>
         <div class="regTop">
             <p class="regTitle">Registro</p>
@@ -122,12 +132,12 @@
                 <div class="semAll">
                     <p>Ver todos</p>
                     <img src="./assets/arrow-2.svg" alt="" class="allImg">
-                </div>   
-            </a> 
+                </div>
+            </a>
         </div>
         <div class="mainNav nav_home">
             <a href="" class="mainOpc">
-                <div >
+                <div>
                     <img src="./assets/semestre.svg" alt="">
                     <p>Semestres</p>
                 </div>
@@ -139,7 +149,7 @@
                 </div>
             </a>
             <a href="" class="mainOpc">
-                <div >
+                <div>
                     <img src="./assets/user.svg" alt="">
                     <p>Perfil</p>
                 </div>
@@ -181,7 +191,7 @@
         </div>
         <div class="mainNav nav_semestre">
             <a href="" class="mainOpc">
-                <div >
+                <div>
                     <img src="./assets/semestre.svg" alt="">
                     <p>Semestres</p>
                 </div>
@@ -193,7 +203,7 @@
                 </div>
             </a>
             <a href="" class="mainOpc">
-                <div >
+                <div>
                     <img src="./assets/user.svg" alt="">
                     <p>Perfil</p>
                 </div>
@@ -249,7 +259,7 @@
         </div>
         <div class="mainNav nav_materia">
             <a href="" class="mainOpc">
-                <div >
+                <div>
                     <img src="./assets/semestre.svg" alt="">
                     <p>Semestres</p>
                 </div>
@@ -261,12 +271,34 @@
                 </div>
             </a>
             <a href="" class="mainOpc">
-                <div >
+                <div>
                     <img src="./assets/user.svg" alt="">
                     <p>Perfil</p>
                 </div>
             </a>
         </div>
     </section>
+    <section id="crear_materia">
+        <div class="crear_materia_content">
+            <div class="div_crear_materia">
+                <div class="form form_crear_materia">
+                    <div class="crear_materia_top">
+                        <h3 class="nv_materia">Nueva materia</h3>
+                        <img class="cancelar"src="./assets/cancelar.svg" alt="" height="18px">
+                    </div>
+                    <form>
+                        <p class="labelForm">Nombre</p>
+                        <input type="text" placeholder="Ingrese nombre" class="inputForm">
+                        <p class="labelForm">Telefono</p>
+                        <input type="number" placeholder="Nro. Creditos" class="inputForm">
+                        <btn class="btnForm btn_crear">
+                            <p class="btn_crear_txt">Agregar</p>
+                        </btn>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
+
 </html>

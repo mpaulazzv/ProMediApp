@@ -1,0 +1,47 @@
+#crear_materia{
+    height: 615px;
+    background-color: $low-opacity-grey;
+    align-content: center;
+    padding: 0 3rem 0 3rem;
+}
+
+.crear_materia_content{
+    margin: 0;
+    height: 100%;
+    align-content: center;
+}
+
+.div_crear_materia{
+    align-content: center;
+}
+
+.crear_materia_top{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.nv_materia{
+    font-family: $title;
+    font-size: 20px;
+    font-weight: 350;
+}
+
+.cancelar {
+    position: absolute; 
+    right: 1.5rem;
+}
+
+
+.btn_crear{
+    padding: 1px 1px 1px 1px;
+    margin-left: 0.9rem;
+}
+
+.btn_crear_txt{
+    font-family: $title;
+}
+
+.nv_materia, .cancelar{
+flex: 1;
+}
