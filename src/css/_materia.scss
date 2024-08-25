@@ -1,0 +1,111 @@
+#materia{
+    height: 615px;
+    background-color: $white;
+}
+
+.materia_content{
+    margin: 0;
+    padding: 1.5rem 2.5rem 0 2.5rem;
+    height: 100%;
+}
+
+.titulo_materia{
+    font-size: 35px;
+    font-family: $title;
+    margin: 0;
+    color: $black;
+    font-weight: 390;
+}
+
+.subtitulos_materia{
+    display: flex;
+    margin-top: -1rem;
+}
+
+.promedio_materia, .creditos_materia{
+    flex: 1;
+    font-size: 15px;
+    color: $grey;
+    font-family: $title;
+    font-weight: 350;
+}
+
+.nota_d{
+    font-size: 17px;
+    font-family: $title;
+    font-weight: 380;
+    margin-top: -0.6rem;
+}
+
+.notas{
+    height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-bottom: 1rem;
+}
+
+.detalle_nota{
+    display: flex;
+    width: 95%;
+    height: 43px;
+    background-color: $light-grey;
+    box-shadow: 5px 2px 3px rgba(0, 0, 0, 0.3);;
+    text-align: left;
+    align-items: center;
+    align-content: center;
+    border-radius: 12px;
+    padding: 2px 5px 2px 5px;
+    margin-bottom: 15px;
+}
+
+.texto_nota{
+    margin-left: 5px;
+    flex: 1;
+    font-size: 15;
+    font-family: $title;
+}
+
+.btn_agregar_nota{
+    display: flex;
+    width: 95%;
+    height: 43px;
+    background-color: $secondary;
+    text-align: left;
+    align-items: center;
+    align-content: center;
+    border-radius: 12px;
+    padding: 2px 5px 2px 5px;
+}
+
+.nota_necesaria{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 95%;
+    background-color: $primary;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    border-radius: 12px;
+    padding: 2px 3px 2px 3px;
+}
+
+.nota_necesaria_titulo{
+    font-family: $title;
+    font-size: 25px;
+    font-weight: 380;
+}
+
+.n_necesaria_p{
+    font-family: $title;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.materia_top{
+    margin-top: 2rem;
+}
+
+
+.nav_materia{
+    position: relative;
+}
