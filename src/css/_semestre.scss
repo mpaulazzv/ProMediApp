@@ -1,0 +1,77 @@
+#semestre{
+    height: 615px;
+    background-color: $white;
+}
+.semestreContent{
+    margin: 0;
+    padding: 1.5rem 3rem 0 3rem;
+    height: 100%;
+}
+
+.semestre_titulo{
+    font-size: 40px;
+    font-family: $title;
+    margin: 0;
+    color: $black;
+}
+
+.semestreTop{
+    margin-top: 2rem;
+}
+
+.semestre_subtitulos{
+    display: flex;
+    margin-top: -1rem;
+}
+
+.promedio_semestre, .creditos_semestre{
+    flex: 1;
+    font-size: 15px;
+    color: $grey;
+    font-family: $body;
+}
+
+.materias_semestre{
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.materia_semestre{
+    display: flex;
+    width: 95%;
+    height: 43px;
+    background-color: $light-grey;
+    box-shadow: 5px 2px 3px rgba(0, 0, 0, 0.3);;
+    text-align: left;
+    align-items: center;
+    align-content: center;
+    border-radius: 12px;
+    padding: 2px 5px 2px 5px;
+    margin-bottom: 15px;
+}
+
+.nombre_materia_semestre{
+    font-family: $title;
+    font-size: 18px;
+    font-weight: 350;
+    margin-left: 1rem;
+}
+
+.nav_semestre{
+    position: relative;
+    bottom: 6rem;
+}
+
+.btn_agregar_materia{
+    display: flex;
+    width: 95%;
+    height: 43px;
+    background-color: $primary;
+    text-align: left;
+    align-items: center;
+    align-content: center;
+    border-radius: 12px;
+    padding: 2px 5px 2px 5px;
+}

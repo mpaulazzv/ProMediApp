@@ -6,6 +6,8 @@ $secondary: #8bd0fc;
 $red: #ff8f5c;
 $black: #1f1e22;
 $white: #FEFCF0;
+$grey: #383838;
+$light-grey: rgba(245, 243, 243, 0.679);
 
 $title: "Oswald", sans-serif;
 $body: "Source Sans 3", sans-serif; 
@@ -60,8 +62,6 @@ a{
 }
 
 .mainNav{
-    position: absolute;
-    bottom: -2rem;
     display: flex;
     justify-content: space-around;
     align-content: center;
