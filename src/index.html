@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.scss">
+    <script src="./js/nav_main.js"></script>
     <title>ProMedia</title>
 </head>
 
@@ -135,27 +136,7 @@
                 </div>
             </a>
         </div>
-        <div class="mainNav nav_home">
-            <a href="" class="mainOpc">
-                <div>
-                    <img src="./assets/semestre.svg" alt="">
-                    <p>Semestres</p>
-                </div>
-            </a>
-            <a href="" class="mainOpc">
-                <div class="">
-                    <img src="./assets/home.svg" alt="">
-                    <p>Home</p>
-                </div>
-            </a>
-            <a href="" class="mainOpc">
-                <div>
-                    <img src="./assets/user.svg" alt="">
-                    <p>Perfil</p>
-                </div>
-            </a>
-        </div>
-    </section>
+        <nav-main class="nav_home"></nav-main>
     <section id="semestre">
         <div class="semestreContent">
             <div class="semestreTop">
@@ -189,26 +170,7 @@
                 <h3 class="nombre_materia_semestre">Agregar nueva materia</h3>
             </btn>
         </div>
-        <div class="mainNav nav_semestre">
-            <a href="" class="mainOpc">
-                <div>
-                    <img src="./assets/semestre.svg" alt="">
-                    <p>Semestres</p>
-                </div>
-            </a>
-            <a href="" class="mainOpc">
-                <div class="">
-                    <img src="./assets/home.svg" alt="">
-                    <p>Home</p>
-                </div>
-            </a>
-            <a href="" class="mainOpc">
-                <div>
-                    <img src="./assets/user.svg" alt="">
-                    <p>Perfil</p>
-                </div>
-            </a>
-        </div>
+        <nav-main class="nav_semestre"></nav-main>
     </section>
     <section id="#materia">
         <div class="materia_content">
@@ -257,40 +219,40 @@
                 <p class="n_necesaria_p">En el ##% restante para lograr tu nota ideal</p>
             </div>
         </div>
-        <div class="mainNav nav_materia">
-            <a href="" class="mainOpc">
-                <div>
-                    <img src="./assets/semestre.svg" alt="">
-                    <p>Semestres</p>
-                </div>
-            </a>
-            <a href="" class="mainOpc">
-                <div class="">
-                    <img src="./assets/home.svg" alt="">
-                    <p>Home</p>
-                </div>
-            </a>
-            <a href="" class="mainOpc">
-                <div>
-                    <img src="./assets/user.svg" alt="">
-                    <p>Perfil</p>
-                </div>
-            </a>
-        </div>
+        <nav-main class="nav_materia"></nav-main>
     </section>
-    <section id="crear_materia">
-        <div class="crear_materia_content">
+    <section id="crear_elemento">
+        <div class="crear_elemento_content">
             <div class="div_crear_materia">
-                <div class="form form_crear_materia">
-                    <div class="crear_materia_top">
-                        <h3 class="nv_materia">Nueva materia</h3>
+                <div class="form form_crear_elemento">
+                    <div class="crear_elemento_top">
+                        <h3 class="nv_elemento">Nueva materia</h3>
                         <img class="cancelar"src="./assets/cancelar.svg" alt="" height="18px">
                     </div>
                     <form>
                         <p class="labelForm">Nombre</p>
                         <input type="text" placeholder="Ingrese nombre" class="inputForm">
-                        <p class="labelForm">Telefono</p>
+                        <p class="labelForm">Créditos</p>
                         <input type="number" placeholder="Nro. Creditos" class="inputForm">
+                        <btn class="btnForm btn_crear">
+                            <p class="btn_crear_txt">Agregar</p>
+                        </btn>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="crear_elemento">
+        <div class="crear_elemento_content">
+            <div class="div_crear_elemento">
+                <div class="form form_elemento">
+                    <div class="crear_elemento_top">
+                        <h3 class="nv_elemento">Nuevo semestre</h3>
+                        <img class="cancelar"src="./assets/cancelar.svg" alt="" height="18px">
+                    </div>
+                    <form>
+                        <p class="labelForm">Nombre</p>
+                        <input type="text" placeholder="Ingrese nombre" class="inputForm">
                         <btn class="btnForm btn_crear">
                             <p class="btn_crear_txt">Agregar</p>
                         </btn>

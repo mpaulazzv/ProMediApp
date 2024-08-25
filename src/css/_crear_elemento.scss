@@ -1,27 +1,27 @@
-#crear_materia{
+#crear_elemento{
     height: 615px;
     background-color: $low-opacity-grey;
     align-content: center;
     padding: 0 3rem 0 3rem;
 }
 
-.crear_materia_content{
+.crear_elemento_content{
     margin: 0;
     height: 100%;
     align-content: center;
 }
 
-.div_crear_materia{
+.div_crear_elemento{
     align-content: center;
 }
 
-.crear_materia_top{
+.crear_elemento_top{
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 
-.nv_materia{
+.nv_elemento{
     font-family: $title;
     font-size: 20px;
     font-weight: 350;
@@ -42,6 +42,6 @@
     font-family: $title;
 }
 
-.nv_materia, .cancelar{
+.nv_elemento, .cancelar{
 flex: 1;
 }
