@@ -1,0 +1,177 @@
+#semestres {
+    background-color: $white;
+    height: 615px;
+}
+
+.semestres_content {
+    margin: 0;
+    height: 100%;
+}
+
+.sem_cont_2 {
+    margin: 0;
+    padding: 1.5rem 3rem 1.5 3rem;
+}
+
+.semestres_tit h1 {
+    font-size: 40px;
+    font-family: $title;
+    margin: 0;
+    color: $black;
+}
+
+.semestres_tit p {
+    font-size: 15px;
+    margin: 0;
+    font-family: $title;
+}
+
+.lista_semestres {
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-bottom: 1.5rem;
+    margin-top: 20px;
+}
+
+.box_semestre {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    column-gap: 2px;
+    background-color: $light-grey;
+    box-shadow: 5px 2px 3px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    border-radius: 12px;
+    padding: 2px 5px 2px 5px;
+    margin-bottom: 15px;
+}
+
+.semestre_body {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.semboxImg {
+    width: 1.5rem;
+    transform: rotate(45deg);
+    margin-left: 140px;
+}
+
+.info_semestre {
+    margin-left: 1rem;
+}
+
+.info_semestre p {
+    font-family: $title;
+    font-size: 10px;
+    margin: 0;
+
+}
+
+.nombre_semestre {
+    font-family: $title;
+    font-size: 18px;
+    font-weight: 350;
+    margin-left: 1rem;
+    margin-bottom: 1px;
+    margin-top: 10px;
+}
+
+.boxop_semestre {
+    display: flex;
+    flex-direction: column;
+    width: 42%;
+    column-gap: 2px;
+    background-color: $light-grey;
+    box-shadow: 5px 2px 3px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    border-radius: 12px;
+    padding: 2px 5px 2px 5px;
+    margin-bottom: 15px;
+}
+
+.semestreop_body {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.nombreop_semestre {
+    font-family: $title;
+    font-size: 16px;
+    font-weight: 350;
+    margin-left: 10px;
+    margin-bottom: 1px;
+    margin-top: 10px;
+}
+
+.semboxopImg {
+    margin-top: 15px;
+    width: 1.0rem;
+    transform: rotate(45deg);
+    margin-left: 10px;
+}
+
+.infoop_semestre {
+    margin-left: 10px;
+}
+
+.infoop_semestre p {
+    font-family: $title;
+    font-size: 12px;
+    margin: 0;
+
+}
+
+.options_semestres {
+    display: flex;
+    gap: 20px;
+}
+
+.nuevo_semestre {
+    display: flex;
+    flex-direction: column;
+    width: 42%;
+    column-gap: 2px;
+    background-color: $low-opacity-grey;
+    box-shadow: 5px 2px 3px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    align-items: center;
+    border-radius: 12px;
+    padding: 2px 5px 2px 5px;
+    margin-bottom: 15px;
+}
+
+.agregar_nuevo {
+    font-size: 15px;
+    font-family: $title;
+    margin: 0;
+    margin-top: 15px;
+    width: 100%;
+    margin-left: 20px;
+    color: $grey;
+}
+
+.agregar_row {
+    display: flex;
+    margin-top: 2px;
+    width: 100%;
+}
+
+.semestre_txt {
+    margin: 0;
+    font-size: 15px;
+    font-family: $title;
+    margin-left: 10px;
+    color: $grey;
+}
+
+.semaddImg {
+    width: 1.0rem;
+    transform: rotate(45deg);
+    margin-left: 10px;
+    margin-top: 10px;
+    color: $white;
+}
