@@ -11,4 +11,62 @@
 
 .usuario_content {
     height: 100%;
+    background-color: $white;
+}
+
+.userImg {
+    width: 4rem;
+}
+
+.perfil {
+    padding-top: 80px;
+    align-items: center;
+    text-align: center;
+}
+
+.nombre_usuario {
+    font-size: 20px;
+    font-family: $title;
+    margin: 0;
+}
+
+.list_info_usuario {
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.info_usuario {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+
+}
+
+.info_usuario p {
+    margin: 0;
+    font-family: $title;
+    font-size: 16px;
+}
+
+.userinfoImg {
+    width: 1.5rem;
+    margin-left: 80px;
+}
+
+.btn_cerrar_sesion {
+    background-color: $white;
+    width: 30%;
+    border-bottom: 2px $grey solid;
+    margin-top: 70px;
+    margin-bottom: 80px;
+}
+
+.text_cerrar-sesion {
+    color: $grey;
+    margin: 0;
+    padding: 10px;
+    font-size: 15px;
 }
