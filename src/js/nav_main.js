@@ -19,7 +19,7 @@ class navMain extends HTMLElement{
                 </div>
             </a>
             <a href="" class="mainOpc">
-                <div id="btn_perfil">
+                <div id="btn_Usuario">
                     <img src="http://127.0.0.1:3000/src/assets/user.svg" alt="">
                     <p>Perfil</p>
                 </div>

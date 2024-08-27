@@ -12,8 +12,8 @@ function init(){
     refs["login"] = document.getElementById("login");
     refs["registro"] = document.getElementById("registro");
     refs["Home"] = document.getElementById("Home");
-    //refs["semestres"] = document.getElementById("semestres");
-    //refs["perfil"] = document.getElementById("perfil")
+    refs["semestres"] = document.getElementById("semestres");
+    refs["Usuario"] = document.getElementById("Usuario");
     refs["semestre"] = document.getElementById("semestre");
     refs["materia"] = document.getElementById("materia");
     refs["crear_materia"] = document.getElementById("crear_materia");
@@ -82,4 +82,3 @@ function cargarSeccion(seccion){
     ocultar();
     refs[seccion].classList.remove("ocultar");
 }
-
