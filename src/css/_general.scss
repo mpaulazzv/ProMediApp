@@ -101,3 +101,11 @@ a{
 .ocultar{
     display: none;
 }
+
+
+.popUp{
+    display: block;
+    z-index: 1000;
+    position: fixed;
+    top:0;
+}

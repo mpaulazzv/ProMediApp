@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.scss">
+    <link rel="stylesheet" href="css/vendor/_animated.scss">
     <script src="./js/nav_main.js"></script>
     <script src="./js/main.js"></script>
     <title>ProMedia</title>
@@ -36,7 +37,7 @@
             <div class="line"></div>
         </div>
     </section>
-    <section id="login">
+    <section id="login" class="ocultar">
         <div class="loginMenu">
             <a class="volver_splash"><img src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin"></a>
             <a>
@@ -52,10 +53,10 @@
             <input type="text" placeholder="Ingrese usuario" class="inputForm">
             <p class="labelForm">Contraseña</p>
             <input type="password" placeholder="Ingrese contraseña" class="inputForm">
-            <p id="btn_Home_login" class="btnForm">Login</p>
+            <p id="btn_successLogin" class="btnForm">Login</p>
         </div>
     </section>
-    <section id="registro">
+    <section id="registro" class="ocultar">
         <div class="regMenu">
             <a class="volver_splash"><img src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin"></a>
             <a>
@@ -77,16 +78,16 @@
             <input type="password" placeholder="Ingrese contraseña" class="inputForm">
             <p class="labelForm">Confirmar Contraseña</p>
             <input type="password" placeholder="Ingrese contraseña" class="inputForm">
-            <p class="btnForm" id="btn_Home_registro">Crear cuenta</p>
+            <p class="btnForm" id="btn_alertaRegistro">Crear cuenta</p>
         </div>
     </section>
-    <section id="Home">
+    <section id="Home" class="ocultar">
         <div class="homeContent">
             <div class="homeTop">
                 <p class="homeTitle">Hola</p>
                 <p class="homeDesc">Nombre usuario</p>
             </div>
-            <div class="semAct">
+            <div class="semAct" id="btn_semestre_actual">
                 <p class="semTitle">Semestre Actual</p>
                 <div class="semBottom">
                     <div class="contBottom">
@@ -98,7 +99,7 @@
             </div>
             <div class="wrapper">
                 <div class="semSlider">
-                    <div id="sem1" class="semOpc">
+                    <div id="btn_semestre_Home" class="semOpc">
                         <p class="opcTitle">Semestre Nro.#</p>
                         <div class="opcBottom">
                             <div class="opcCont">
@@ -108,7 +109,7 @@
                             <img src="./assets/arrow-more.svg" alt="" class="opcImg">
                         </div>
                     </div>
-                    <div id="sem2" class="semOpc">
+                    <div class="semOpc">
                         <p class="opcTitle">Semestre Nro.#</p>
                         <div class="opcBottom">
                             <div class="opcCont">
@@ -130,18 +131,19 @@
                     </div>
                 </div>
             </div>
-            <a href="">
+            <a>
                 <div class="semAll">
-                    <p>Ver todos</p>
+                    <p id="btn_semestres_home">Ver todos</p>
                     <img src="./assets/arrow-2.svg" alt="" class="allImg">
                 </div>
             </a>
         </div>
-        <nav-main></nav-main>
+        <nav-main class="nav"></nav-main>
     </section>
-    <section id="semestre">
+    <section id="semestre" class="ocultar">
         <div class="semestreContent">
             <div class="semestreTop">
+                <img id="volver_semestres"src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin">
                 <h1 class="semestre_titulo">Semestre #</h1>
                 <div class="semestre_subtitulos">
                     <h3 class="promedio_semestre">Promedio: ##.##</h3>
@@ -149,7 +151,7 @@
                 </div>
             </div>
             <div class="materias_semestre">
-                <div class="materia_semestre">
+                <div class="materia_semestre" id="btn_materia">
                     <h3 class="nombre_materia_semestre">Materia Nro. #</h3>
                 </div>
                 <div class="materia_semestre">
@@ -168,15 +170,16 @@
                     <h3 class="nombre_materia_semestre">Materia Nro. #</h3>
                 </div>
             </div>
-            <btn class="btn_agregar_materia">
+            <div class="btn_agregar_materia" id="btn_crearmateria">
                 <h3 class="nombre_materia_semestre">Agregar nueva materia</h3>
-            </btn>
+            </div>
         </div>
-        <nav-main class="nav_semestre"></nav-main>
+        <nav-main class="nav"></nav-main>
     </section>
-    <section id="materia">
+    <section id="materia" class="ocultar">
         <div class="materia_content">
             <div class="materia_top">
+                <img id="volver_semestre" src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin">
                 <h1 class="titulo_materia">Materia</h1>
                 <div class="subtitulos_materia">
                     <h3 class="promedio_materia">Promedio: ##.##</h3>
@@ -221,15 +224,15 @@
                 <p class="n_necesaria_p">En el ##% restante para lograr tu nota ideal</p>
             </div>
         </div>
-        <nav-main class="nav_materia"></nav-main>
+        <nav-main class="nav"></nav-main>
     </section>
-    <section id="crear_materia" class="crear_elemento">
+    <section id="crearmateria" class="ventanaEmergente crear_elemento ocultar">
         <div class="crear_elemento_content">
             <div class="div_crear_materia">
                 <div class="form form_crear_elemento">
                     <div class="crear_elemento_top">
                         <h3 class="nv_elemento">Nueva materia</h3>
-                        <img class="cancelar" src="./assets/cancelar.svg" alt="" height="18px">
+                        <img id="cerrar_semestre" class="cancelar" src="./assets/cancelar.svg" alt="" height="18px">
                     </div>
                     <form>
                         <p class="labelForm">Nombre</p>
@@ -244,13 +247,13 @@
             </div>
         </div>
     </section>
-    <section id="crear_semestre" class="crear_elemento">
+    <section id="crearsemestre" class="ventanaEmergente crear_elemento ocultar">
         <div class="crear_elemento_content">
             <div class="div_crear_elemento">
                 <div class="form form_elemento">
                     <div class="crear_elemento_top">
                         <h3 class="nv_elemento">Nuevo semestre</h3>
-                        <img class="cancelar" src="./assets/cancelar.svg" alt="" height="18px">
+                        <img id="cerrar_semestres" class="cancelar" src="./assets/cancelar.svg" alt="" height="18px">
                     </div>
                     <form>
                         <p class="labelForm">Nombre</p>
@@ -263,10 +266,11 @@
             </div>
         </div>
     </section>
-    <section id="semestres">
+    <section id="semestres" class="ocultar">
         <div class="semestres_content">
             <div class="sem_cont_2">
                 <div class="semestres_tit">
+                    <img id="volver_Home" src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin">
                     <h1>Semestres</h1>
                     <p>Todos tus semestres</p>
                 </div>
@@ -353,7 +357,7 @@
                             <img src="./assets/arrow-more.svg" alt="" class="semboxopImg">
                         </div>
                     </div>
-                    <div class="nuevo_semestre">
+                    <div class="nuevo_semestre" id="btn_crearsemestre">
                         <h3 class="agregar_nuevo">Agregar nuevo</h3>
                         <div class="agregar_row">
                             <h3 class="semestre_txt">Semestre</h3>
@@ -362,10 +366,10 @@
                     </div>
                 </div>
             </div>
-            <nav-main></nav-main>
+            <nav-main class="nav"></nav-main>
         </div>
     </section>
-    <section id="Usuario">
+    <section id="Usuario" class="ocultar">
         <div class="usuario_content">
             <div class="barra_urs"></div>
             <div class="perfil">
@@ -388,47 +392,47 @@
                         <p>Información Usuario</p>
                         <img src="./assets/arrow-2.svg" alt="" class="userinfoImg">
                     </div>
-                    <btn class="btn_cerrar_sesion">
+                    <btn id="btn_splash_cerrarSesion" class="btn_cerrar_sesion">
                         <h3 class="text_cerrar-sesion">Cerrar sesión</h3>
                     </btn>
                 </div>
             </div>
         </div>
-        <nav-main></nav-main>
+        <nav-main class="nav"></nav-main>
     </section>
-    <section class="alertas" id="alerta_registro">
+    <section class="ventanaEmergente alertas ocultar" id="alertaRegistro">
         <div class="alertas_content">
             <div class="recuadro_alerta">
                 <img src="./assets/alert.svg" height="80px">
                 <h1 class="alerta_txt">Datos incorrectos</h1>
-                <div class="btn_regresar">Regresar</div>  
+                <div id="btn_registro_regresar" class="btn_regresar" id="btn_registro_alerta">Regresar</div>  
             </div>  
         </div>
     </section>
-    <section class="alertas" id="success_registro">
+    <section class="ventanaEmergente alertas ocultar" id="successRegistro">
         <div class="alertas_content">
             <div class="recuadro_alerta">
                 <img src="./assets/success.svg" height="80px">
                 <h1 class="alerta_txt">Creó su cuenta satisfactoriamente</h1>
-                <div class="btn_regresar">Conitnuar</div>  
+                <div id="btn_Home_registroCompleto" class="btn_regresar" id="btn_Home_success_registro">Conitnuar</div>  
             </div>  
         </div>
     </section>
-    <section class="alertas" id="alerta_login">
+    <section class="ventanaEmergente alertas ocultar" id="alertaLogin">
         <div class="alertas_content">
             <div class="recuadro_alerta">
                 <img src="./assets/alert.svg" height="80px">
                 <h1 class="alerta_txt">Credenciales de inicio de sesión incorrectas</h1>
-                <div class="btn_regresar">Regresar</div>  
+                <div id="btn_login_regresar" class="btn_regresar" id="btn_login_alerta">Regresar</div>  
             </div>  
         </div>
     </section>
-    <section class="alertas" id="success_login">
+    <section class="ventanaEmergente alertas ocultar" id="successLogin">
         <div class="alertas_content">
             <div class="recuadro_alerta">
                 <img src="./assets/success.svg" height="80px">
                 <h1 class="alerta_txt">Ha iniciado sesión </h1>
-                <div class="btn_regresar">Continuar</div>  
+                <div id="btn_Home_loginCompleto" class="btn_regresar" id="btn_Home_success_login">Continuar</div>  
             </div>  
         </div>
     </section>

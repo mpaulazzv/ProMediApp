@@ -5,8 +5,6 @@ let btns = [];
 window.onload = init;
 
 function init(){
-
-
     
     refs["splash"] = document.getElementById("splash");
     refs["login"] = document.getElementById("login");
@@ -16,23 +14,40 @@ function init(){
     refs["Usuario"] = document.getElementById("Usuario");
     refs["semestre"] = document.getElementById("semestre");
     refs["materia"] = document.getElementById("materia");
-    refs["crear_materia"] = document.getElementById("crear_materia");
-    refs["crear_semestre"] = document.getElementById("crear_semestre");
+    refs["crearmateria"] = document.getElementById("crearmateria");
+    refs["crearsemestre"] = document.getElementById("crearsemestre");
+    refs["alertaRegistro"] = document.getElementById("alertaRegistro");
+    refs["successRegistro"] = document.getElementById("successRegistro");
+    refs["alertaLogin"] = document.getElementById("alertaLogin");
+    refs["successLogin"] = document.getElementById("successLogin");
+    
 
 
-    btns["btn_perfil"] = document.getElementById("btn_perfil");
-    btns["btn_Home"] = document.getElementById("btn_Home");
-    btns["btn_semestres"] = document.getElementById("btn_semestres");
     btns["btn_login_splash"] = document.getElementById("btn_login_splash");
     btns["btn_registro_splash"] = document.getElementById("btn_registro_splash");
     btns["btn_Home_splash"] = document.getElementById("btn_Home_splash");
-    btns["btn_Home_login"] = document.getElementById("btn_Home_login");
-    btns["btn_Home_registro"] = document.getElementById("btn_Home_registro");
+    btns["btn_successLogin"] = document.getElementById("btn_successLogin");
+    btns["btn_alertaRegistro"] = document.getElementById("btn_alertaRegistro");
     btns["btn_registro_login"] = document.getElementById("btn_registro_login");
-    btns["btn_login_registro"] = document.getElementById("btn_login_registro");
+    btns["btn_semestre_actual"] = document.getElementById("btn_semestre_actual")
+    btns["btn_semestres_home"] = document.getElementById("btn_semestres_home")
+    btns["btn_materia"] = document.getElementById("btn_materia");
+    btns["volver_semestre"] = document.getElementById("volver_semestre");
+    btns["volver_semestres"] = document.getElementById("volver_semestres");
+    btns["volver_Home"] = document.getElementById("volver_Home");
+    btns["btn_crearsemestre"] = document.getElementById("btn_crearsemestre");
+    btns["btn_crearmateria"] = document.getElementById("btn_crearmateria");
+    btns["cerrar_semestres"] = document.getElementById("cerrar_semestres");
+    btns["cerrar_semestre"] = document.getElementById("cerrar_semestre");
+    btns["btn_semestre_Home"] = document.getElementById("btn_semestre_Home");
+    btns["btn_splash_cerrarSesion"] = document.getElementById("btn_splash_cerrarSesion");
+    btns["btn_registro_regresar"] = document.getElementById("btn_registro_regresar");
+    btns["btn_login_regresar"] = document.getElementById("btn_login_regresar");
+    btns["btn_Home_registroCompleto"] = document.getElementById("btn_Home_registroCompleto");
+    btns["btn_Home_loginCompleto"] = document.getElementById("btn_Home_loginCompleto");
 
 
-    asignarEventosMenu();
+    asignarEventosMenu();   
     asignarVolver();
     
 
@@ -41,16 +56,29 @@ function init(){
 
 function asignarEventosMenu(){
 
-    btns["btn_perfil"].addEventListener("click", cambiarSeccion);
-    btns["btn_Home"].addEventListener("click", cambiarSeccion);
-    btns["btn_semestres"].addEventListener("click", cambiarSeccion);
     btns["btn_login_splash"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_splash"].addEventListener("click", cambiarSeccion);
     btns["btn_Home_splash"].addEventListener("click", cambiarSeccion);
-    btns["btn_Home_login"].addEventListener("click", cambiarSeccion);
-    btns["btn_Home_registro"].addEventListener("click", cambiarSeccion);
+    btns["btn_successLogin"].addEventListener("click", cambiarSeccion);
+    btns["btn_alertaRegistro"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_login"].addEventListener("click", cambiarSeccion);
-    btns["btn_login_registro"].addEventListener("click", cambiarSeccion);
+    btns["btn_semestre_actual"].addEventListener("click", cambiarSeccion);
+    btns["btn_semestres_home"].addEventListener("click", cambiarSeccion);
+    btns["btn_materia"].addEventListener("click", cambiarSeccion);
+    btns["volver_semestre"].addEventListener("click", cambiarSeccion);
+    btns["volver_semestres"].addEventListener("click", cambiarSeccion);
+    btns["volver_Home"].addEventListener("click", cambiarSeccion);
+    btns["btn_crearsemestre"].addEventListener("click", cambiarSeccion);
+    btns["btn_crearmateria"].addEventListener("click", cambiarSeccion);
+    btns["cerrar_semestres"].addEventListener("click", cambiarSeccion);
+    btns["cerrar_semestre"].addEventListener("click", cambiarSeccion);
+    btns["btn_semestre_Home"].addEventListener("click", cambiarSeccion);
+    btns["btn_splash_cerrarSesion"].addEventListener("click", cambiarSeccion);
+    btns["btn_registro_regresar"].addEventListener("click", cambiarSeccion);
+    btns["btn_login_regresar"].addEventListener("click", cambiarSeccion);
+    btns["btn_Home_registroCompleto"].addEventListener("click", cambiarSeccion);
+    btns["btn_Home_loginCompleto"].addEventListener("click", cambiarSeccion);
+
 
 
 }
@@ -68,17 +96,36 @@ function ocultar()
 {
     for (let key in refs) {
         refs[key].classList.add("ocultar");
+        if(refs[key].classList[0] === "ventanaEmergente"){
+            refs[key].classList.remove("popUp");
+        }
     }
 }
 
 function cambiarSeccion(e){ 
-    let seccion = e.target.id.split("_")[1];
+    let seccion;
     console.log(e.target);
-    console.log("seccion: ", seccion);
+    console.log(e.currentTarget)
+    if(e.currentTarget.className === "nav"){
+        seccion = e.target.id.split("_")[1];
+    }else{
+        seccion = e.currentTarget.id.split("_")[1];
+    }
+     
     cargarSeccion(seccion);
 }
 
+
 function cargarSeccion(seccion){
-    ocultar();
+    
+    console.log(refs[seccion].classList[0]);
+    console.log(refs[seccion].id)
+    if (refs[seccion].classList[0] === "ventanaEmergente"){
+        refs[seccion].classList.add("popUp");
+    }else{
+        ocultar();
+    }
+
     refs[seccion].classList.remove("ocultar");
+
 }
