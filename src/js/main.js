@@ -50,6 +50,7 @@ function init(){
 
     //Forms
     forms["form_registro"] = document.getElementById("form_registro");
+    forms["form_login"] = document.getElementById("form_login")
 
 
     asignarEventosMenu();   
@@ -65,7 +66,7 @@ function asignarEventosMenu(){
     btns["btn_login_splash"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_splash"].addEventListener("click", cambiarSeccion);
     btns["btn_Home_splash"].addEventListener("click", cambiarSeccion);
-    btns["btn_successLogin"].addEventListener("click", cambiarSeccion);
+    //btns["btn_successLogin"].addEventListener("click", cambiarSeccion);
     //btns["btn_alertaRegistro"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_login"].addEventListener("click", cambiarSeccion);
     btns["btn_semestre_actual"].addEventListener("click", cambiarSeccion);
@@ -87,6 +88,7 @@ function asignarEventosMenu(){
 
     //Eventos form
     forms["form_registro"].addEventListener("submit", registro);
+    forms['form_login'].addEventListener('submit', login);
 
 }
 
@@ -183,4 +185,53 @@ function registro(e){
             cargarSeccion('successRegistro');
 
         }
+}
+
+function login(e)
+{
+    e.preventDefault();
+
+    //Obtención de los datos del formulario
+
+    const formData = new FormData(e.target);
+
+    console.log(e.target);
+
+    let username = formData.get('username');
+    let password = formData.get('password');
+
+    console.log(formData);
+
+    //Validar que exista el usuario registrado
+
+
+    if(!localStorage.getItem('usuario'))
+    {
+        console.log('No hay usuario')
+        cargarSeccion('alertaLogin');
+    }else
+    {
+        let user = JSON.parse(localStorage.getItem('usuario'));
+        console.log(user);
+        console.log(user.usename);
+        console.log(username);
+
+        if(username === "" || password=== "")
+        {
+            cargarSeccion('alertaLogin');
+        }
+        else if(user.username !== username)
+        {
+            cargarSeccion('alertaLogin')
+        }else if(user.password !== password)
+        {
+            cargarSeccion('alertaLogin');
+        }else
+        {
+            cargarSeccion('successLogin');
+        }
+    }
+    
+
+
 }
