@@ -1,11 +1,13 @@
 
 let refs = [];
 let btns = [];
+let forms = [];
 
 window.onload = init;
 
 function init(){
     
+    //Referencias a las secciones
     refs["splash"] = document.getElementById("splash");
     refs["login"] = document.getElementById("login");
     refs["registro"] = document.getElementById("registro");
@@ -22,7 +24,7 @@ function init(){
     refs["successLogin"] = document.getElementById("successLogin");
     
 
-
+    //Botones para la navegabilidad
     btns["btn_login_splash"] = document.getElementById("btn_login_splash");
     btns["btn_registro_splash"] = document.getElementById("btn_registro_splash");
     btns["btn_Home_splash"] = document.getElementById("btn_Home_splash");
@@ -43,8 +45,11 @@ function init(){
     btns["btn_splash_cerrarSesion"] = document.getElementById("btn_splash_cerrarSesion");
     btns["btn_registro_regresar"] = document.getElementById("btn_registro_regresar");
     btns["btn_login_regresar"] = document.getElementById("btn_login_regresar");
-    btns["btn_Home_registroCompleto"] = document.getElementById("btn_Home_registroCompleto");
+    btns["btn_login_registroCompleto"] = document.getElementById("btn_login_registroCompleto");
     btns["btn_Home_loginCompleto"] = document.getElementById("btn_Home_loginCompleto");
+
+    //Forms
+    forms["form_registro"] = document.getElementById("form_registro");
 
 
     asignarEventosMenu();   
@@ -56,11 +61,12 @@ function init(){
 
 function asignarEventosMenu(){
 
+    //Eventos botones
     btns["btn_login_splash"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_splash"].addEventListener("click", cambiarSeccion);
     btns["btn_Home_splash"].addEventListener("click", cambiarSeccion);
     btns["btn_successLogin"].addEventListener("click", cambiarSeccion);
-    btns["btn_alertaRegistro"].addEventListener("click", cambiarSeccion);
+    //btns["btn_alertaRegistro"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_login"].addEventListener("click", cambiarSeccion);
     btns["btn_semestre_actual"].addEventListener("click", cambiarSeccion);
     btns["btn_semestres_home"].addEventListener("click", cambiarSeccion);
@@ -76,10 +82,11 @@ function asignarEventosMenu(){
     btns["btn_splash_cerrarSesion"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_regresar"].addEventListener("click", cambiarSeccion);
     btns["btn_login_regresar"].addEventListener("click", cambiarSeccion);
-    btns["btn_Home_registroCompleto"].addEventListener("click", cambiarSeccion);
+    btns["btn_login_registroCompleto"].addEventListener("click", cambiarSeccion);
     btns["btn_Home_loginCompleto"].addEventListener("click", cambiarSeccion);
 
-
+    //Eventos form
+    forms["form_registro"].addEventListener("submit", registro);
 
 }
 
@@ -104,8 +111,6 @@ function ocultar()
 
 function cambiarSeccion(e){ 
     let seccion;
-    console.log(e.target);
-    console.log(e.currentTarget)
     if(e.currentTarget.className === "nav"){
         seccion = e.target.id.split("_")[1];
     }else{
@@ -128,4 +133,54 @@ function cargarSeccion(seccion){
 
     refs[seccion].classList.remove("ocultar");
 
+}
+
+
+function registro(e){
+    
+    e.preventDefault();
+
+    //Obtención de los datos del formulario
+    const formData = new FormData(e.target);
+
+    const nombre = formData.get('nombre');
+    const telefono = formData.get('telefono');
+    const username = formData.get('username');
+    const password = formData.get('password');
+    const passwd_confirmation = formData.get('passwd_confirmation');
+
+    let user = {};
+
+    //Validaciones
+
+    if(nombre === "" || telefono === "" || username === "" || password == "" || passwd_confirmation == "")
+        {
+            document.getElementById('msj_alerta_reg').innerText = 'Ningún campo puede ir vacío';
+            cargarSeccion('alertaRegistro');
+            
+        }else if(password.lengt <8)
+        {
+            document.getElementById('msj_alerta_reg').innerText = 'la contraseña debe tener al menos 8 caracteres';
+            cargarSeccion('alertaRegistro');
+        }else if(passwd_confirmation !== password)
+        {
+            document.getElementById('msj_alerta_reg').innerText = 'las contraseñas no coinciden';
+            cargarSeccion('alertaRegistro');
+        }else
+        {
+            //Se crea el usuario y se guarda en localstorage
+
+            user = 
+            {
+                nombre: nombre,
+                telefono: telefono,
+                username: username,
+                password: password
+            }
+
+            localStorage.setItem("usuario", JSON.stringify(user));
+
+            cargarSeccion('successRegistro');
+
+        }
 }

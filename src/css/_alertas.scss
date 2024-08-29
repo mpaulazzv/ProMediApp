@@ -1,5 +1,6 @@
 .alertas{
-    height: 615px;
+    height: 640px;
+    width: 265px;
     background-color: $low-opacity-grey;
     align-content: center;
     align-items: center;
@@ -8,7 +9,7 @@
 
 .alertas_content{
     margin: 0;
-    height: 90%;
+    height: 100%;
     align-content: center;
     align-items: center;
 }
@@ -22,7 +23,6 @@
     background-color: $white;
     border-radius: 20px;
     box-shadow: 10px 5px 0 2px rgba(0, 0, 0, 0.3);
-    overflow:visible;
 }
 
 .alerta_txt{
@@ -41,4 +41,10 @@
     border-radius: 30px;
     background-color: $secondary;  
     margin-bottom: 10px;  
+}
+
+.msj_alerta{
+    font-family: $title;
+    font-weight: 300;
+    font-size: 18px;
 }

@@ -67,19 +67,19 @@
             <p class="regTitle">Registro</p>
             <p class="regDesc">Crea una cuenta</p>
         </div>
-        <div class="form">
+        <form class="form" id="form_registro">
             <p class="labelForm">Nombre</p>
-            <input type="text" placeholder="Ingrese nombre" class="inputForm">
+            <input type="text" placeholder="Ingrese nombre" class="inputForm" name="nombre">
             <p class="labelForm">Telefono</p>
-            <input type="text" placeholder="Ingrese telefono" class="inputForm">
+            <input type="number" placeholder="Ingrese telefono" class="inputForm" name="telefono">
             <p class="labelForm">Nombre de usuario</p>
-            <input type="text" placeholder="Ingrese usuario" class="inputForm">
+            <input type="text" placeholder="Ingrese usuario" class="inputForm" name="username">
             <p class="labelForm">Contraseña</p>
-            <input type="password" placeholder="Ingrese contraseña" class="inputForm">
+            <input type="password" placeholder="Ingrese contraseña" class="inputForm" name="password">
             <p class="labelForm">Confirmar Contraseña</p>
-            <input type="password" placeholder="Ingrese contraseña" class="inputForm">
-            <p class="btnForm" id="btn_alertaRegistro">Crear cuenta</p>
-        </div>
+            <input type="password" placeholder="Ingrese contraseña" class="inputForm" name="passwd_confirmation">
+            <input type="submit" class="btnForm" id="btn_alertaRegistro" value="Crear cuenta"></input>
+        </form>
     </section>
     <section id="Home" class="ocultar">
         <div class="homeContent">
@@ -405,6 +405,7 @@
             <div class="recuadro_alerta">
                 <img src="./assets/alert.svg" height="80px">
                 <h1 class="alerta_txt">Datos incorrectos</h1>
+                <p id="msj_alerta_reg" class="msj_alerta"></p>
                 <div id="btn_registro_regresar" class="btn_regresar" id="btn_registro_alerta">Regresar</div>  
             </div>  
         </div>
@@ -413,8 +414,8 @@
         <div class="alertas_content">
             <div class="recuadro_alerta">
                 <img src="./assets/success.svg" height="80px">
-                <h1 class="alerta_txt">Creó su cuenta satisfactoriamente</h1>
-                <div id="btn_Home_registroCompleto" class="btn_regresar" id="btn_Home_success_registro">Conitnuar</div>  
+                <h1 class="alerta_txt">Creó su cuenta satisfactoriamente. Debe iniciar sesión</h1>
+                <div id="btn_login_registroCompleto" class="btn_regresar">Conitnuar</div>  
             </div>  
         </div>
     </section>
