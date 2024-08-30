@@ -60,6 +60,8 @@ function init(){
     asignarVolver();
     cargarSemestres();
     mostrarSemestres();
+    mostrar_infoPerfil();
+    cambiarColor_nav();
 
     console.log(btns);
 
@@ -147,16 +149,17 @@ function ocultar()
 }
 
 function cambiarSeccion(e){ 
-    console.log(e.target);
     let seccion;
     if(e.currentTarget.className === "nav"){
         seccion = e.target.id.split("_")[1];
+
     }else{
         seccion = e.currentTarget.id.split("_")[1];
     }
      
     cargarSeccion(seccion);
 }
+
 
 
 function cargarSeccion(seccion){
@@ -392,3 +395,20 @@ function mostrarSemestres(){
     asignarEventosSemestre();
 
 }
+
+function mostrar_infoPerfil(){
+
+    let username_home = document.getElementById('username_home');
+    let username_usuario = document.getElementById('username_usuario');
+    let telefono_usuario = document.getElementById('telefono_usuario');
+    let nombre_usuario = document.getElementById('nombre_usuario')
+
+    username_home.innerText = user.nombre;
+    username_usuario.innerText = user.username;
+    telefono_usuario.innerText = user.telefono;
+    nombre_usuario.innerText = user.nombre;
+
+}
+
+
+

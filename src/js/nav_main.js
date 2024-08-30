@@ -7,19 +7,19 @@ class navMain extends HTMLElement{
         this.innerHTML = `
         <div class="mainNav">
             <a  class="mainOpc">
-                <div id="btn_semestres">
+                <div id="btn_semestres" class="opc_nav">
                     <img src='http://127.0.0.1:3000/src/assets/semestre.svg' alt="">
                     <p>Semestres</p>
                 </div>
             </a>
             <a  class="mainOpc">
-                <div id="btn_Home">
+                <div id="btn_Home" class="opc_nav">
                     <img src="http://127.0.0.1:3000/src/assets/home.svg" alt="" id="img-home">
                     <p >Home</p>
                 </div>
             </a>
-            <a class="mainOpc">
-                <div id="btn_Usuario">
+            <a class="mainOpc" >
+                <div id="btn_Usuario" class = "opc_nav">
                     <img src="http://127.0.0.1:3000/src/assets/user.svg" alt="">
                     <p >Perfil</p>
                 </div>
