@@ -1,36 +1,40 @@
 #semestres {
     background-color: $white;
-    height: 615px;
-}
-
-.semestres_content {
-    margin: 0;
-    height: 100%;
 }
 
 .sem_cont_2 {
     margin: 0;
     padding: 1.5rem 3rem 1.5 3rem;
+    height: 532px;
+}
+
+.arrowSems{
+    height: 100%;
+    margin: 1rem 0;
+    width: 1rem;  
 }
 
 .semestres_tit h1 {
-    font-size: 40px;
+    font-size: 2.5rem;
     font-family: $title;
     margin: 0;
     color: $black;
 }
 
 .semestres_tit p {
-    font-size: 15px;
-    margin: 0;
-    font-family: $title;
+    margin-top: -.5rem;
+    margin-left: .3rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    font-family: $body;
 }
 
 .lista_semestres {
-    height: 300px;
+    min-height: 90px;
+    max-height: 240px;
     overflow-y: scroll;
     overflow-x: hidden;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     margin-top: 20px;
 }
 
@@ -39,8 +43,7 @@
     flex-direction: column;
     width: 95%;
     column-gap: 2px;
-    background-color: $light-grey;
-    box-shadow: 5px 2px 3px rgba(0, 0, 0, 0.3);
+    background-color: $primary;
     text-align: left;
     border-radius: 12px;
     padding: 2px 5px 2px 5px;
@@ -56,25 +59,26 @@
 .semboxImg {
     width: 1.5rem;
     transform: rotate(45deg);
-    margin-left: 140px;
+    margin-left: 110px;
 }
 
 .info_semestre {
     margin-left: 1rem;
+    margin-bottom: 5px;
 }
 
 .info_semestre p {
     font-family: $title;
-    font-size: 10px;
+    font-size: .8rem;
     margin: 0;
-
 }
 
 .nombre_semestre {
     font-family: $title;
-    font-size: 18px;
-    font-weight: 350;
+    text-transform: initial;
+    font-size: 1.3rem;
     margin-left: 1rem;
+    font-weight: 400;
     margin-bottom: 1px;
     margin-top: 10px;
 }
@@ -132,32 +136,20 @@
 
 .nuevo_semestre {
     display: flex;
-    flex-direction: column;
-    width: 42%;
-    column-gap: 2px;
-    background-color: $low-opacity-grey;
-    box-shadow: 5px 2px 3px rgba(0, 0, 0, 0.3);
-    text-align: left;
-    align-items: center;
-    border-radius: 12px;
-    padding: 2px 5px 2px 5px;
-    margin-bottom: 15px;
+    justify-content: space-around;
+    align-content: center;
+    width: 100%;
+    padding: 1rem;
+    background-color: $red;
+    border-radius: 1rem;
 }
 
 .agregar_nuevo {
-    font-size: 15px;
-    font-family: $title;
     margin: 0;
-    margin-top: 15px;
-    width: 100%;
-    margin-left: 20px;
-    color: $grey;
-}
-
-.agregar_row {
-    display: flex;
-    margin-top: 2px;
-    width: 100%;
+    font-size: 1rem;
+    font-family: $body;
+    color: $black;
+    font-weight: 800;
 }
 
 .semestre_txt {
@@ -169,9 +161,14 @@
 }
 
 .semaddImg {
-    width: 1.0rem;
-    transform: rotate(45deg);
-    margin-left: 10px;
-    margin-top: 10px;
+    width: 1.5rem;
+    margin: 0 .5rem;
     color: $white;
+}
+
+.desCrearSem{
+    margin-left: .3rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    font-family: $body;
 }

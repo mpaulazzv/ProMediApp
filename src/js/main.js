@@ -2,6 +2,7 @@
 let refs = [];
 let btns = [];
 let forms = [];
+let usuarios = [];
 
 window.onload = init;
 
@@ -50,12 +51,11 @@ function init(){
 
     //Forms
     forms["form_registro"] = document.getElementById("form_registro");
-    forms["form_login"] = document.getElementById("form_login")
-
+    forms["form_login"] = document.getElementById("form_login");
+    forms["form_crear_sem"] = document.getElementById("crear_sem_form");
 
     asignarEventosMenu();   
     asignarVolver();
-    
 
 }
 
@@ -89,7 +89,8 @@ function asignarEventosMenu(){
     //Eventos form
     forms["form_registro"].addEventListener("submit", registro);
     forms['form_login'].addEventListener('submit', login);
-
+    forms['form_crear_sem'].addEventListener('submit', crearSemestre);
+    
 }
 
 function asignarVolver(){
@@ -177,7 +178,8 @@ function registro(e){
                 nombre: nombre,
                 telefono: telefono,
                 username: username,
-                password: password
+                password: password,
+                semestres: []
             }
 
             localStorage.setItem("usuario", JSON.stringify(user));
@@ -229,9 +231,141 @@ function login(e)
         }else
         {
             cargarSeccion('successLogin');
+            cargarSemestres();
         }
     }
-    
 
+}
+
+function cargarSemestres(){
+    let lista = document.querySelector('#sem_list');
+    let desCrear = document.querySelector('.desCrearSem');
+    let bnv = document.querySelector('#bnv');
+    let semAct = document.querySelector('#btn_semestre_actual');
+    let wrapper =  document.querySelector('#wrapper_home');
+
+    let user = JSON.parse(localStorage.getItem('usuario'));
+
+    if(user.semestres.length !=0) {
+        desCrear.classList.add('ocultar');
+        lista.classList.remove('ocultar');
+        bnv.classList.add('ocultar');
+        semAct.classList.remove('ocultar')
+        wrapper.classList.remove('ocultar')
+
+        mostrarSemestres();
+    }
+}
+
+function crearSemestre(e){
+    e.preventDefault();
+
+    let user = JSON.parse(localStorage.getItem('usuario'));
+    const formData = new FormData(e.target);
+    let nombre_sem = formData.get('nombre_sem');
+
+    user.semestres.push({
+        nombre: nombre_sem,
+        nro_materias: 0,
+        promedio: 0.0,
+        creditos: 0,
+        materias: []
+    });
+
+    localStorage.setItem("usuario",JSON.stringify(user));
+    mostrarSemestres();
+}
+
+function mostrarSemestres(){
+    
+    let user = JSON.parse(localStorage.getItem("usuario"));
+    
+    let semIndv = document.querySelector('#section_semestres');
+    let place = document.querySelector('#sem_list');
+    let place_home = document.querySelector('#btn_semestre_actual');
+    let place_slider = document.querySelector('#slider_home');
+    
+    let section = "";
+    let out = "";
+    let out_home = "";
+    let out_slider ="";
+
+    let nro;
+
+    for(sem in user.semestres ){
+        nro = 0;
+        out += `
+            <div id=${"btn_semestres_semestre" + String(nro++)} class="box_semestre">
+                <h3 class="nombre_semestre">${user.semestres[sem].nombre}</h3>
+                <div class="semestre_body">
+                    <div class="info_semestre">
+                        <p>Nro de materias: ${user.semestres[sem].nro_materias}</p>
+                        <p>Promedio: ${user.semestres[sem].promedio}</p>
+                    </div>
+                    <img src="http://127.0.0.1:3000/src/assets/arrow-more.svg" alt="" class="semboxImg">
+                </div>
+            </div>
+        `;
+        out_home = `
+            <div id=${"btn_home_semestre" + String(nro++)}>
+                <p class="semTitle">${user.semestres[sem].nombre}</p>
+                <div class="semBottom">
+                    <div class="contBottom">
+                        <p class="semDesc">Nro.Materias: ${user.semestres[sem].nro_materias}</p>
+                        <p class="semDesc">Promedio: ${user.semestres[sem].promedio}</p>
+                    </div>
+                    <img src="http://127.0.0.1:3000/src/assets/arrow-more.svg" alt="" class="semImg">
+                </div>
+            </div>
+        `;
+        out_slider +=`
+            <div id=${"2btn_home_semestre" + String(nro++)} class="semOpc">
+                <p class="opcTitle">${user.semestres[sem].nombre}</p>
+                <div class="opcBottom">
+                    <div class="opcCont">
+                        <p class="opcDesc">Nro.Materias: ${user.semestres[sem].nro_materias}</p>
+                        <p class="opcDesc">Promedio: ${user.semestres[sem].promedio}</p>
+                    </div>
+                    <img src="http://127.0.0.1:3000/src/assets/arrow-more.svg" alt="" class="opcImg">
+                </div>
+            </div>
+        `;
+
+        section += `
+            <section id=${"semestre"+String(nro++)} class="ocultar">
+                <div class="semestreContent">
+                    <div class="semestreTop">
+                        <img id="volver_semestres"src="http://127.0.0.1:30007src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
+                        <h1 class="semestre_titulo">${user.semestres[sem].nombre}</h1>
+                        <div class="semestre_subtitulos">
+                            <h3 class="promedio_semestre">${user.semestres[sem].promedio}</h3>
+                            <h3 class="creditos_semestre">${user.semestres[sem].creditos}</h3>
+                        </div>
+                    </div>
+                    <div class="materias_semestre">
+                    </div>
+                </div>
+            </section>
+        `;
+    }
+
+    place.innerHTML =  out;
+    semIndv.innerHTML =  section;
+    place_home.innerHTML = out_home;
+    place_slider.innerHTML = out_slider;
+
+    for(sem in user.semestres ){
+        nro=0;
+
+        refs["semestre"+String(nro++)] = document.getElementById("semestre"+String(nro++));
+        
+        btns["btn_semestres_semestre"+String(nro++)] = document.getElementById("btn_semestres_semestre"+String(nro++));
+        btns["btn_home_semestre"+String(nro++)] = document.getElementById("btn_home_semestre"+String(nro++));
+        btns["2btn_home_semestre"+String(nro++)] = document.getElementById("2btn_home_semestre"+String(nro++));
+        
+        btns["btn_semestres_semestre"+String(nro++)].addEventListener("click", cambiarSeccion);
+        btns["btn_home_semestre"+String(nro++)].addEventListener("click", cambiarSeccion);
+        btns["2btn_home_semestre"+String(nro++)].addEventListener("click", cambiarSeccion);
+    }
 
 }

@@ -87,39 +87,16 @@
                 <p class="homeTitle">Hola</p>
                 <p class="homeDesc">Nombre usuario</p>
             </div>
-            <div class="semAct" id="btn_semestre_actual">
-                <p class="semTitle">Semestre Actual</p>
-                <div class="semBottom">
-                    <div class="contBottom">
-                        <p class="semDesc">Nro.Materias</p>
-                        <p class="semDesc">Promedio</p>
-                    </div>
-                    <img src="./assets/arrow-more.svg" alt="" class="semImg">
-                </div>
+            <div id="bnv" class="semOpc">
+                <p class="opcTitle">Bienvenido</p>
+                <p class="opcDesc"> Aqui encontraras rápido acceso a tus semestres más recientes. Ve a crealos. </p>
             </div>
-            <div class="wrapper">
-                <div class="semSlider">
+            <div class="semAct ocultar" id="btn_semestre_actual">
+               
+            </div>
+            <div id="wrapper_home" class="wrapper ocultar">
+                <div id="slider_home" class="semSlider">
                     <div id="btn_semestre_Home" class="semOpc">
-                        <p class="opcTitle">Semestre Nro.#</p>
-                        <div class="opcBottom">
-                            <div class="opcCont">
-                                <p class="opcDesc">Nro.Materias</p>
-                                <p class="opcDesc">Promedio</p>
-                            </div>
-                            <img src="./assets/arrow-more.svg" alt="" class="opcImg">
-                        </div>
-                    </div>
-                    <div class="semOpc">
-                        <p class="opcTitle">Semestre Nro.#</p>
-                        <div class="opcBottom">
-                            <div class="opcCont">
-                                <p class="opcDesc">Nro.Materias</p>
-                                <p class="opcDesc">Promedio</p>
-                            </div>
-                            <img src="./assets/arrow-more.svg" alt="" class="opcImg">
-                        </div>
-                    </div>
-                    <div id="sem3" class="semOpc">
                         <p class="opcTitle">Semestre Nro.#</p>
                         <div class="opcBottom">
                             <div class="opcCont">
@@ -255,12 +232,12 @@
                         <h3 class="nv_elemento">Nuevo semestre</h3>
                         <img id="cerrar_semestres" class="cancelar" src="./assets/cancelar.svg" alt="" height="18px">
                     </div>
-                    <form>
-                        <p class="labelForm">Nombre</p>
-                        <input type="text" placeholder="Ingrese nombre" class="inputForm">
-                        <btn class="btnForm btn_crear">
+                    <form id="crear_sem_form" action="/">
+                        <label for="nombre_sem" class="labelForm">Nombre</label>
+                        <input name="nombre_sem" type="text" placeholder="Ingrese nombre" class="inputForm" required>
+                        <button type="submit" class="btnForm btn_crear">
                             <p class="btn_crear_txt">Agregar</p>
-                        </btn>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -270,99 +247,18 @@
         <div class="semestres_content">
             <div class="sem_cont_2">
                 <div class="semestres_tit">
-                    <img id="volver_Home" src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin">
+                    <img id="volver_Home" src="./assets/arrow-left.svg" alt="arrow" class="arrowSems">
                     <h1>Semestres</h1>
                     <p>Todos tus semestres</p>
                 </div>
-                <div class="lista_semestres">
-                    <div class="box_semestre">
-                        <h3 class="nombre_semestre">Semestre Nro. #</h3>
-                        <div class="semestre_body">
-                            <div class="info_semestre">
-                                <p>Nro de materias</p>
-                                <p>Promedio</p>
-                            </div>
-                            <img src="./assets/arrow-more.svg" alt="" class="semboxImg">
-                        </div>
-                    </div>
-                    <div class="box_semestre">
-                        <h3 class="nombre_semestre">Semestre Nro. #</h3>
-                        <div class="semestre_body">
-                            <div class="info_semestre">
-                                <p>Nro de materias</p>
-                                <p>Promedio</p>
-                            </div>
-                            <img src="./assets/arrow-more.svg" alt="" class="semboxImg">
-                        </div>
-                    </div>
-                    <div class="box_semestre">
-                        <h3 class="nombre_semestre">Semestre Nro. #</h3>
-                        <div class="semestre_body">
-                            <div class="info_semestre">
-                                <p>Nro de materias</p>
-                                <p>Promedio</p>
-                            </div>
-                            <img src="./assets/arrow-more.svg" alt="" class="semboxImg">
-                        </div>
-                    </div>
-                    <div class="box_semestre">
-                        <h3 class="nombre_semestre">Semestre Nro. #</h3>
-                        <div class="semestre_body">
-                            <div class="info_semestre">
-                                <p>Nro de materias</p>
-                                <p>Promedio</p>
-                            </div>
-                            <img src="./assets/arrow-more.svg" alt="" class="semboxImg">
-                        </div>
-                    </div>
-                    <div class="box_semestre">
-                        <h3 class="nombre_semestre">Semestre Nro. #</h3>
-                        <div class="semestre_body">
-                            <div class="info_semestre">
-                                <p>Nro de materias</p>
-                                <p>Promedio</p>
-                            </div>
-                            <img src="./assets/arrow-more.svg" alt="" class="semboxImg">
-                        </div>
-                    </div>
-                    <div class="box_semestre">
-                        <h3 class="nombre_semestre">Semestre Nro. #</h3>
-                        <div class="semestre_body">
-                            <div class="info_semestre">
-                                <p>Nro de materias</p>
-                                <p>Promedio</p>
-                            </div>
-                            <img src="./assets/arrow-more.svg" alt="" class="semboxImg">
-                        </div>
-                    </div>
-                    <div class="box_semestre">
-                        <h3 class="nombre_semestre">Semestre Nro. #</h3>
-                        <div class="semestre_body">
-                            <div class="info_semestre">
-                                <p>Nro de materias</p>
-                                <p>Promedio</p>
-                            </div>
-                            <img src="./assets/arrow-more.svg" alt="" class="semboxImg">
-                        </div>
-                    </div>
+                <p class="desCrearSem"> Aqui encontraras todos tus semestres a gestionar. Aunque aun no tienes semestres.</p>
+                <div id="sem_list" class="lista_semestres ocultar">
+                    
                 </div>
                 <div class="options_semestres">
-                    <div class="boxop_semestre">
-                        <h3 class="nombreop_semestre">Semestre Nro. #</h3>
-                        <div class="semestreop_body">
-                            <div class="infoop_semestre">
-                                <p>Nro de materias</p>
-                                <p>Promedio</p>
-                            </div>
-                            <img src="./assets/arrow-more.svg" alt="" class="semboxopImg">
-                        </div>
-                    </div>
                     <div class="nuevo_semestre" id="btn_crearsemestre">
-                        <h3 class="agregar_nuevo">Agregar nuevo</h3>
-                        <div class="agregar_row">
-                            <h3 class="semestre_txt">Semestre</h3>
-                            <img src="./assets/cancelar.svg" alt="" class="semaddImg">
-                        </div>
+                        <h3 class="agregar_nuevo">Agregar Semestre</h3>
+                        <img src="./assets/plus.svg" alt="" class="semaddImg">
                     </div>
                 </div>
             </div>
@@ -437,6 +333,9 @@
             </div>  
         </div>
     </section>
+    <div id="section_semestres">
+
+    </div>
 </body>
 
 </html>
