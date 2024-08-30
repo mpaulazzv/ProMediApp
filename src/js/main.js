@@ -32,7 +32,7 @@ function init(){
     btns["btn_successLogin"] = document.getElementById("btn_successLogin");
     btns["btn_alertaRegistro"] = document.getElementById("btn_alertaRegistro");
     btns["btn_registro_login"] = document.getElementById("btn_registro_login");
-    btns["btn_semestre_actual"] = document.getElementById("btn_semestre_actual")
+    //btns["btn_semestre_actual"] = document.getElementById("btn_semestre_actual")
     btns["btn_semestres_home"] = document.getElementById("btn_semestres_home")
     btns["btn_materia"] = document.getElementById("btn_materia");
     btns["volver_semestre"] = document.getElementById("volver_semestre");
@@ -42,7 +42,7 @@ function init(){
     btns["btn_crearmateria"] = document.getElementById("btn_crearmateria");
     btns["cerrar_semestres"] = document.getElementById("cerrar_semestres");
     btns["cerrar_semestre"] = document.getElementById("cerrar_semestre");
-    btns["btn_semestre_Home"] = document.getElementById("btn_semestre_Home");
+    //btns["btn_semestre_Home"] = document.getElementById("btn_semestre_Home");
     btns["btn_splash_cerrarSesion"] = document.getElementById("btn_splash_cerrarSesion");
     btns["btn_registro_regresar"] = document.getElementById("btn_registro_regresar");
     btns["btn_login_regresar"] = document.getElementById("btn_login_regresar");
@@ -56,6 +56,28 @@ function init(){
 
     asignarEventosMenu();   
     asignarVolver();
+    
+    mostrarSemestres();
+    
+    let user = JSON.parse(localStorage.getItem('usuario'));
+    let b1 = "btn_semestres_semestre";
+    let b2 = "btn_home_semestre";
+    let b3 = "2btn_home_semestre";
+    let nro=0;
+    for(sem in user.semestres ){
+
+        nro++;
+
+        refs["semestre"+String(nro)] = document.getElementById("semestre"+String(nro));
+        
+        btns[b1+String(nro)] = document.getElementById(b1+String(nro));
+        btns[b2+String(nro)] = document.getElementById(b2+String(nro));
+        btns[b3+String(nro)] = document.getElementById(b3+String(nro));
+
+        btns[b1+String(nro)].addEventListener("click", cambiarSeccion);
+        btns[b2+String(nro)].addEventListener("click", cambiarSeccion);
+        btns[b3+String(nro)].addEventListener("click", cambiarSeccion);
+    }
 
 }
 
@@ -69,7 +91,7 @@ function asignarEventosMenu(){
     //btns["btn_successLogin"].addEventListener("click", cambiarSeccion);
     //btns["btn_alertaRegistro"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_login"].addEventListener("click", cambiarSeccion);
-    btns["btn_semestre_actual"].addEventListener("click", cambiarSeccion);
+    //btns["btn_semestre_actual"].addEventListener("click", cambiarSeccion);
     btns["btn_semestres_home"].addEventListener("click", cambiarSeccion);
     btns["btn_materia"].addEventListener("click", cambiarSeccion);
     btns["volver_semestre"].addEventListener("click", cambiarSeccion);
@@ -79,7 +101,7 @@ function asignarEventosMenu(){
     btns["btn_crearmateria"].addEventListener("click", cambiarSeccion);
     btns["cerrar_semestres"].addEventListener("click", cambiarSeccion);
     btns["cerrar_semestre"].addEventListener("click", cambiarSeccion);
-    btns["btn_semestre_Home"].addEventListener("click", cambiarSeccion);
+    //btns["btn_semestre_Home"].addEventListener("click", cambiarSeccion);
     btns["btn_splash_cerrarSesion"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_regresar"].addEventListener("click", cambiarSeccion);
     btns["btn_login_regresar"].addEventListener("click", cambiarSeccion);
@@ -290,12 +312,15 @@ function mostrarSemestres(){
     let out_home = "";
     let out_slider ="";
 
-    let nro;
+    let b1 = "btn_semestres_semestre";
+    let b2 = "btn_home_semestre";
+    let b3 = "2btn_home_semestre";
+    let nro = 0;
 
     for(sem in user.semestres ){
-        nro = 0;
+        nro++;
         out += `
-            <div id=${"btn_semestres_semestre" + String(nro++)} class="box_semestre">
+            <div id=${b1 + String(nro)} class="box_semestre">
                 <h3 class="nombre_semestre">${user.semestres[sem].nombre}</h3>
                 <div class="semestre_body">
                     <div class="info_semestre">
@@ -307,7 +332,7 @@ function mostrarSemestres(){
             </div>
         `;
         out_home = `
-            <div id=${"btn_home_semestre" + String(nro++)}>
+            <div id=${b2 + String(nro)}>
                 <p class="semTitle">${user.semestres[sem].nombre}</p>
                 <div class="semBottom">
                     <div class="contBottom">
@@ -319,7 +344,7 @@ function mostrarSemestres(){
             </div>
         `;
         out_slider +=`
-            <div id=${"2btn_home_semestre" + String(nro++)} class="semOpc">
+            <div id=${b3 + String(nro)} class="semOpc">
                 <p class="opcTitle">${user.semestres[sem].nombre}</p>
                 <div class="opcBottom">
                     <div class="opcCont">
@@ -332,7 +357,7 @@ function mostrarSemestres(){
         `;
 
         section += `
-            <section id=${"semestre"+String(nro++)} class="ocultar">
+            <section id=${"semestre"+String(nro)} class="ocultar">
                 <div class="semestreContent">
                     <div class="semestreTop">
                         <img id="volver_semestres"src="http://127.0.0.1:30007src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
@@ -353,19 +378,5 @@ function mostrarSemestres(){
     semIndv.innerHTML =  section;
     place_home.innerHTML = out_home;
     place_slider.innerHTML = out_slider;
-
-    for(sem in user.semestres ){
-        nro=0;
-
-        refs["semestre"+String(nro++)] = document.getElementById("semestre"+String(nro++));
-        
-        btns["btn_semestres_semestre"+String(nro++)] = document.getElementById("btn_semestres_semestre"+String(nro++));
-        btns["btn_home_semestre"+String(nro++)] = document.getElementById("btn_home_semestre"+String(nro++));
-        btns["2btn_home_semestre"+String(nro++)] = document.getElementById("2btn_home_semestre"+String(nro++));
-        
-        btns["btn_semestres_semestre"+String(nro++)].addEventListener("click", cambiarSeccion);
-        btns["btn_home_semestre"+String(nro++)].addEventListener("click", cambiarSeccion);
-        btns["2btn_home_semestre"+String(nro++)].addEventListener("click", cambiarSeccion);
-    }
 
 }
