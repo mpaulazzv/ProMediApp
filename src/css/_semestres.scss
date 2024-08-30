@@ -75,12 +75,12 @@
 
 .nombre_semestre {
     font-family: $title;
-    text-transform: initial;
     font-size: 1.3rem;
     margin-left: 1rem;
     font-weight: 400;
     margin-bottom: 1px;
     margin-top: 10px;
+    text-transform: capitalize;
 }
 
 .boxop_semestre {

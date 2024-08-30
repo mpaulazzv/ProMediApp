@@ -2,10 +2,11 @@
     height: 615px;
     background-color: $white;
 }
+
 .semestreContent{
     margin: 0;
     padding: 1rem 3rem 0 3rem;
-    height: 100%;
+    height: 540px;
 }
 
 .semestre_titulo{
@@ -13,6 +14,7 @@
     font-family: $title;
     margin: 0;
     color: $black;
+    text-transform: capitalize;
 }
 
 .semestreTop{
@@ -26,7 +28,8 @@
 
 .promedio_semestre, .creditos_semestre{
     flex: 1;
-    font-size: 15px;
+    font-weight: 400;
+    font-size: .9rem;
     color: $grey;
     font-family: $body;
 }
@@ -66,12 +69,20 @@
 
 .btn_agregar_materia{
     display: flex;
+    justify-content: space-around;
     width: 95%;
     height: 43px;
-    background-color: $primary;
+    background-color: $red;
     text-align: left;
     align-items: center;
     align-content: center;
     border-radius: 12px;
     padding: 2px 5px 2px 5px;
+}
+
+.desCrearMat{
+    margin-left: .3rem;
+    margin-bottom: 2em;
+    font-size: 0.9rem;
+    font-family: $body;
 }

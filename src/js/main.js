@@ -79,6 +79,7 @@ function asignarEventosSemestre()
         btns["btn_semestre" + String(nro) + "_home"] = document.getElementById("btn_semestre" + String(nro) + "_home");
         btns["2btn_semestre" + String(nro) + "_home"] = document.getElementById("2btn_semestre" + String(nro) + "_home");
         btns["volver_semestres_"+String(nro)] = document.getElementById("volver_semestres_"+String(nro));
+        btns["btn_crearmateria_"+String(nro)] = document.getElementById("btn_crearmateria_"+String(nro));
     
         if (btns["btn_semestre" + String(nro) + "_semestres"]) {
             btns["btn_semestre" + String(nro) + "_semestres"].addEventListener("click", cambiarSeccion);
@@ -91,6 +92,9 @@ function asignarEventosSemestre()
         }
         if (btns["volver_semestres_"+String(nro)]) {
             btns["volver_semestres_"+String(nro)].addEventListener("click", cambiarSeccion);
+        }
+        if (btns["btn_crearmateria_"+String(nro)]) {
+            btns["btn_crearmateria_"+String(nro)].addEventListener("click", cambiarSeccion);
         }
     }
 }
@@ -373,16 +377,22 @@ function mostrarSemestres(){
             <section id=${"semestre"+String(nro)} class="ocultar">
                 <div class="semestreContent">
                     <div class="semestreTop">
-                        <img id=${"volver_semestres_"+String(nro)} src="http://127.0.0.1:1234/src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
+                        <img id=${"volver_semestres_"+String(nro)} src="http://127.0.0.1:3000/src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
                         <h1 class="semestre_titulo">${user.semestres[sem].nombre}</h1>
                         <div class="semestre_subtitulos">
-                            <h3 class="promedio_semestre">${user.semestres[sem].promedio}</h3>
-                            <h3 class="creditos_semestre">${user.semestres[sem].creditos}</h3>
+                            <h3 class="promedio_semestre">Promedio: ${user.semestres[sem].promedio}</h3>
+                            <h3 class="creditos_semestre">Creditos: ${user.semestres[sem].creditos}</h3>
                         </div>
                     </div>
-                    <div class="materias_semestre">
+                    <p class="desCrearMat"> En este momento este semestre no tiene materias. Comienza agregando unas materias</p>
+                    <div id="mat_sem" class="materias_semestre ocultar">
+                    </div>
+                    <div class="btn_agregar_materia" id=${"btn_crearmateria_"+String(nro)}>
+                        <h3 class="nombre_materia_semestre">Agregar nueva materia</h3>
+                        <img src="http://127.0.0.1:3000/src/assets/plus.svg" alt="" class="semaddImg">
                     </div>
                 </div>
+                <nav-main class="nav"></nav-main>
             </section>
         `;
     }
@@ -409,6 +419,3 @@ function mostrar_infoPerfil(){
     nombre_usuario.innerText = user.nombre;
 
 }
-
-
-
