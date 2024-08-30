@@ -6,7 +6,7 @@ let usuarios = [];
 let user = JSON.parse(localStorage.getItem('usuario'));
 let semestreActivo = null;
 let materiaActiva = null;
-
+let notaNecesaria = null;
 
 window.onload = init;
 
@@ -123,7 +123,10 @@ function asignarEventosMateria() {
 
 function asignarEventosNotas(){
     forms["form_crear_nota"] = document.getElementById("crear_nota");
-    forms["form_crear_nota"].addEventListener("submit", agregar_nota);
+    if(forms["form_crear_nota"]){
+        forms["form_crear_nota"].addEventListener("submit", agregar_nota);
+    }
+    
 }
 
 
@@ -464,7 +467,10 @@ function agregar_materia(e) {
         creditos_materia: creditos_materia,
         promedio: 0.0,
         nota_deseada: nota_deseada,
-        notas: []
+        notas: [],
+        nota_necesaria: 0,
+        porcentaje_restante: 100,
+
     }
 
     user = JSON.parse(localStorage.getItem("usuario"));
@@ -541,8 +547,8 @@ function mostrarMaterias()
         </form>
     </div>
     <div class="nota_necesaria">
-        <h2 class="nota_necesaria_titulo">Necesitas ##.##</h2>
-        <p class="n_necesaria_p">En el ##% restante para lograr tu nota ideal</p>
+        <h2 class="nota_necesaria_titulo">Necesitas ${materia.nota_necesaria.toFixed(2)}</h2>
+        <p class="n_necesaria_p">En el${materia.porcentaje_restante}% restante para lograr tu nota ideal</p>
     </div>
     </div>
     <nav-main class="nav"></nav-main>
@@ -570,7 +576,7 @@ function agregar_nota(e){
     let nota = {
         nombre_nota: nombre_nota,
         valor_nota: valor_nota,
-        peso_nota: peso_nota
+        peso_nota: peso_nota,
     }
 
     user = JSON.parse(localStorage.getItem("usuario"));
@@ -597,6 +603,8 @@ function mostrarNotas(){
 
     let out="";
     let notas = user.semestres[semestreActivo-1].materias[materiaActiva-1].notas;
+
+    calc_nota_necesaria();
 
     notas.forEach(function(nota) {
         out +=`
@@ -625,5 +633,31 @@ function actualizarSemestre(){
     user.semestres[semestreActivo-1].nro_materias = materias.length;
     user.semestres[semestreActivo-1].creditos = creditos;
     localStorage.setItem("usuario", JSON.stringify(user));  
+
+}
+
+function calc_nota_necesaria(){
+
+    let materia = user.semestres[semestreActivo-1].materias[materiaActiva-1];
+    let notas = materia.notas;
+
+
+    let nota_esperada = materia.nota_deseada;
+    let porcentajeEvaluado = 0; 
+    let notaAcumulada = 0;
+    let porcentajeRestante = 0;
+
+    notas.forEach(function(nota) {
+        porcentajeEvaluado += nota.peso_nota;
+        notaAcumulada += (nota.valor_nota * (nota.peso_nota / 100));
+    });
+
+    porcentajeRestante = 100 - porcentajeEvaluado;
+
+    let notaNecesaria = (nota_esperada - notaAcumulada / porcentajeRestante);
+
+    materia.nota_necesaria = notaNecesaria;
+    materia.porcentaje_restante = porcentajeRestante;
+    localStorage.setItem("usuario", JSON.stringify(user));
 
 }
