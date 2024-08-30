@@ -117,11 +117,8 @@
                     <h3 class="creditos_semestre">Créditos: #</h3>
                 </div>
             </div>
-            <div class="materias_semestre" id="mat_semestre">
-                <div class="materia_semestre" id="btn_materia">
-                    <h3 class="nombre_materia_semestre">Materia Nro. #</h3>
-                </div>
-
+            <div class="materias_semestre" id="materias_list">
+                
             </div>
             <div class="btn_agregar_materia" id="btn_crearmateria">
                 <h3 class="nombre_materia_semestre">Agregar nueva materia</h3>
@@ -129,55 +126,8 @@
         </div>
         <nav-main class="nav"></nav-main>
     </section>
-    <section id="materia" class="ocultar">
-        <div class="materia_content">
-            <div class="materia_top">
-                <img id="volver_semestre" src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin">
-                <h1 class="titulo_materia">Materia</h1>
-                <div class="subtitulos_materia">
-                    <h3 class="promedio_materia">Promedio: ##.##</h3>
-                    <h3 class="creditos_materia">Créditos: #</h3>
-                </div>
-                <div class="nota_deseada">
-                    <h3 class="nota_d">Nota deseada: </h3>
-                </div>
-            </div>
-            <div class="notas">
-                <div class="detalle_nota">
-                    <h4 class="texto_nota">Nota #</h4>
-                    <p class="texto_nota">Nota</p>
-                    <p class="texto_nota">%</p>
-                </div>
-                <div class="detalle_nota">
-                    <h4 class="texto_nota">Nota #</h4>
-                    <p class="texto_nota">Nota</p>
-                    <p class="texto_nota">%</p>
-                </div>
-                <div class="detalle_nota">
-                    <h4 class="texto_nota">Nota #</h4>
-                    <p class="texto_nota">Nota</p>
-                    <p class="texto_nota">%</p>
-                </div>
-                <div class="detalle_nota">
-                    <h4 class="texto_nota">Nota #</h4>
-                    <p class="texto_nota">Nota</p>
-                    <p class="texto_nota">%</p>
-                </div>
-                <div class="detalle_nota">
-                    <h4 class="texto_nota">Nota #</h4>
-                    <p class="texto_nota">Nota</p>
-                    <p class="texto_nota">%</p>
-                </div>
-            </div>
-            <btn class="btn_agregar_nota">
-                <h3 class="nombre_materia_semestre">Agregar nueva nota</h3>
-            </btn>
-            <div class="nota_necesaria">
-                <h2 class="nota_necesaria_titulo">Necesitas ##.##</h2>
-                <p class="n_necesaria_p">En el ##% restante para lograr tu nota ideal</p>
-            </div>
-        </div>
-        <nav-main class="nav"></nav-main>
+    <section id="section_materias">
+        
     </section>
     <section id="crearmateria" class="ventanaEmergente crear_elemento ocultar">
         <div class="crear_elemento_content">
@@ -192,7 +142,7 @@
                         <input type="text" placeholder="Ingrese nombre" class="inputForm" name="nombre_materia">
                         <p class="labelForm">Créditos</p>
                         <input type="number" placeholder="Nro. Creditos" class="inputForm" name="creditos_materia">
-                        <button class="btnForm btn_crear" type="submit">
+                        <button class="btnForm btn_crearM" type="submit" id="btn_semestre_crearmateria">
                             <p class="btn_crear_txt">Agregar</p>
                         </button>
                     </form>

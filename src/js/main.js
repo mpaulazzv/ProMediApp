@@ -4,6 +4,7 @@ let btns = [];
 let forms = [];
 let usuarios = [];
 let user = JSON.parse(localStorage.getItem('usuario'));
+let semestreActivo = null;
 
 
 window.onload = init;
@@ -18,7 +19,7 @@ function init() {
     refs["semestres"] = document.getElementById("semestres");
     refs["Usuario"] = document.getElementById("Usuario");
     refs["semestre"] = document.getElementById("semestre");
-    refs["materia"] = document.getElementById("materia");
+    //refs["materia"] = document.getElementById("materia");
     refs["crearmateria"] = document.getElementById("crearmateria");
     refs["crearsemestre"] = document.getElementById("crearsemestre");
     refs["alertaRegistro"] = document.getElementById("alertaRegistro");
@@ -64,7 +65,6 @@ function init() {
     cargarSemestres();
     mostrarSemestres();
     mostrar_infoPerfil();
-    cambiarColor_nav();
 
     console.log(btns);
 
@@ -101,6 +101,26 @@ function asignarEventosSemestre() {
     }
 }
 
+function asignarEventosMateria() {
+    let nro = 0;
+    user.semestres[semestreActivo-1].materias.forEach(function(materia) {
+        nro++;
+        refs["materia"+String(nro)] = document.getElementById("materia"+String(nro));
+        btns["btn_materia"+String(nro)] = document.getElementById("btn_materia"+String(nro));
+        btns["volver_semestre"+semestreActivo] = document.getElementById("volver_semestre"+semestreActivo);
+
+
+        if (btns["btn_materia"+String(nro)] ) {
+            btns["btn_materia"+String(nro)].addEventListener("click", cambiarSeccion);
+        }
+        if (btns["volver_semestre"+semestreActivo] ) {
+            btns["volver_semestre"+semestreActivo].addEventListener("click", cambiarSeccion);
+        }
+        
+    ;})
+
+}
+
 
 function asignarEventosMenu() {
 
@@ -113,8 +133,8 @@ function asignarEventosMenu() {
     btns["btn_registro_login"].addEventListener("click", cambiarSeccion);
     //btns["btn_semestre_actual"].addEventListener("click", cambiarSeccion);
     btns["btn_semestres_home"].addEventListener("click", cambiarSeccion);
-    btns["btn_materia"].addEventListener("click", cambiarSeccion);
-    btns["volver_semestre"].addEventListener("click", cambiarSeccion);
+    //btns["btn_materia"].addEventListener("click", cambiarSeccion);
+    //btns["volver_semestre"].addEventListener("click", cambiarSeccion);
     btns["volver_semestres"].addEventListener("click", cambiarSeccion);
     btns["volver_Home"].addEventListener("click", cambiarSeccion);
     btns["btn_crearsemestre"].addEventListener("click", cambiarSeccion);
@@ -162,6 +182,11 @@ function cambiarSeccion(e) {
 
     } else {
         seccion = e.currentTarget.id.split("_")[1];
+    }
+
+    if (seccion.startsWith("semestre") && seccion !== "semestres") {
+        semestreActivo = parseInt(seccion.replace("semestre", ""), 10); 
+        mostrarMaterias();
     }
 
     cargarSeccion(seccion);
@@ -376,8 +401,8 @@ function mostrarSemestres() {
                             <h3 class="creditos_semestre">Creditos: ${user.semestres[sem].creditos}</h3>
                         </div>
                     </div>
-                    <p class="desCrearMat"> En este momento este semestre no tiene materias. Comienza agregando unas materias</p>
-                    <div id="mat_sem" class="materias_semestre ocultar">
+                    <div id=${"mat_sem"+String(nro)} class="materias_semestre">
+
                     </div>
                     <div class="btn_agregar_materia" id=${"btn_crearmateria_" + String(nro)}>
                         <h3 class="nombre_materia_semestre">Agregar nueva materia</h3>
@@ -387,6 +412,7 @@ function mostrarSemestres() {
                 <nav-main class="nav"></nav-main>
             </section>
         `;
+
     }
 
     place.innerHTML = out;
@@ -437,25 +463,77 @@ function agregar_materia(e) {
     else {
 
 
-        let array = user.materias;
+        let array = user.semestres[semestreActivo - 1].materias; 
         array.push(materia);
-        user.semestres[0].materias = array;
-
+        user.semestres[semestreActivo-1].materias = array;
+        
 
         localStorage.setItem("usuario", JSON.stringify(user));
-
-        crearNodomateria(nombre_materia, creditos_materia);
     }
 
+    mostrarMaterias();
+
 
 }
 
+function mostrarMaterias()
+{
+    let user = JSON.parse(localStorage.getItem("usuario"));
+    let place = document.querySelector('#mat_sem'+String(semestreActivo));
+    let materiaIndv = document.querySelector("#section_materias");
+    console.log(place);
+    console.log("semestre act: "+  semestreActivo);
 
-function crearNodomateria(nombre, creditos) {
-    var nodo = '<div class="materia_semestre" id="btn_materia">';
-    // nodo += '<div class="mat_row">';
-    nodo += '<h3 class="nombre_materia_semestre">' + nombre + '</h3></div>';
-    // nodo += '<h3 class="credito_materia_semestre">' + creditos + '</h3></div></div>';
-    document.getElementById("mat_semestre").innerHTML += nodo;
+    let out="";
+    let section = "";
+    let materias = user.semestres[semestreActivo-1].materias;
+    let nro = 0;
 
+    materias.forEach(function(materia) {
+        nro++;
+        out +=`
+        <div class="materia_semestre" id=${"btn_materia"+String(nro)}>
+            <h3 class="nombre_materia_semestre">${materia.nombre_materia}</h3>
+        </div>
+    `;
+
+    section += `
+    <section id=${"materia"+String(nro)}>
+        <div class="materia_content">
+            <div class="materia_top">
+            <img id="volver_semestre${semestreActivo}" src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin">
+            <h1 class="titulo_materia">${materia.nombre_materia}</h1>
+        <div class="subtitulos_materia">
+            <h3 class="promedio_materia">Promedio: ##.##</h3>
+            <h3 class="creditos_materia">Créditos:${materia.creditos_materia}</h3>
+        </div>
+        <div class="nota_deseada">
+            <h3 class="nota_d">Nota deseada: </h3>
+        </div>
+    </div>
+    <div class="notas">
+        <div class="detalle_nota">
+            <h4 class="texto_nota">Nota #</h4>
+            <p class="texto_nota">Nota</p>
+            <p class="texto_nota">%</p>
+        </div>
+    </div>
+    <btn class="btn_agregar_nota">
+        <h3 class="nombre_materia_semestre">Agregar nueva nota</h3>
+    </btn>
+    <div class="nota_necesaria">
+        <h2 class="nota_necesaria_titulo">Necesitas ##.##</h2>
+        <p class="n_necesaria_p">En el ##% restante para lograr tu nota ideal</p>
+    </div>
+    </div>
+    <nav-main class="nav"></nav-main>
+    </section>`;
+
+    });
+
+    place.innerHTML = out;
+    materiaIndv.innerHTML = section;
+    asignarEventosMateria();
 }
+
+
