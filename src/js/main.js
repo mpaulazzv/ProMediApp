@@ -5,6 +5,7 @@ let forms = [];
 let usuarios = [];
 let user = JSON.parse(localStorage.getItem('usuario'));
 let semestreActivo = null;
+let materiaActiva = null;
 
 
 window.onload = init;
@@ -68,11 +69,10 @@ function init() {
 
     console.log(btns);
 
-
-
 }
 
 function asignarEventosSemestre() {
+    let user = JSON.parse(localStorage.getItem('usuario'));
     let nro = 0;
     for (sem in user.semestres) {
         nro++;
@@ -102,6 +102,7 @@ function asignarEventosSemestre() {
 }
 
 function asignarEventosMateria() {
+    let user = JSON.parse(localStorage.getItem('usuario'));
     let nro = 0;
     user.semestres[semestreActivo-1].materias.forEach(function(materia) {
         nro++;
@@ -109,16 +110,20 @@ function asignarEventosMateria() {
         btns["btn_materia"+String(nro)] = document.getElementById("btn_materia"+String(nro));
         btns["volver_semestre"+semestreActivo] = document.getElementById("volver_semestre"+semestreActivo);
 
-
         if (btns["btn_materia"+String(nro)] ) {
             btns["btn_materia"+String(nro)].addEventListener("click", cambiarSeccion);
         }
         if (btns["volver_semestre"+semestreActivo] ) {
             btns["volver_semestre"+semestreActivo].addEventListener("click", cambiarSeccion);
         }
-        
+
     ;})
 
+}
+
+function asignarEventosNotas(){
+    forms["form_crear_nota"] = document.getElementById("crear_nota");
+    forms["form_crear_nota"].addEventListener("submit", agregar_nota);
 }
 
 
@@ -187,6 +192,10 @@ function cambiarSeccion(e) {
     if (seccion.startsWith("semestre") && seccion !== "semestres") {
         semestreActivo = parseInt(seccion.replace("semestre", ""), 10); 
         mostrarMaterias();
+    }
+    if (seccion.startsWith("materia")) {
+        materiaActiva = parseInt(seccion.replace("materia", ""), 10); 
+        mostrarNotas();
     }
 
     cargarSeccion(seccion);
@@ -332,7 +341,7 @@ function crearSemestre(e) {
     });
 
     localStorage.setItem("usuario", JSON.stringify(user));
-    mostrarSemestres();
+    cargarSemestres();
 }
 
 function mostrarSemestres() {
@@ -448,11 +457,14 @@ function agregar_materia(e) {
 
     const nombre_materia = formData.get('nombre_materia');
     const creditos_materia = formData.get('creditos_materia');
+    const nota_deseada = formData.get('nota_deseada');
 
     let materia = {
         nombre_materia: nombre_materia,
-        creditos_materia: creditos_materia
-
+        creditos_materia: creditos_materia,
+        promedio: 0.0,
+        nota_deseada: nota_deseada,
+        notas: []
     }
 
     user = JSON.parse(localStorage.getItem("usuario"));
@@ -471,8 +483,8 @@ function agregar_materia(e) {
         localStorage.setItem("usuario", JSON.stringify(user));
     }
 
+    actualizarSemestre();
     mostrarMaterias();
-
 
 }
 
@@ -494,6 +506,7 @@ function mostrarMaterias()
         out +=`
         <div class="materia_semestre" id=${"btn_materia"+String(nro)}>
             <h3 class="nombre_materia_semestre">${materia.nombre_materia}</h3>
+            <img src="http://127.0.0.1:3000/src/assets/arrow-more.svg" alt="" class="opcImg">
         </div>
     `;
 
@@ -501,26 +514,32 @@ function mostrarMaterias()
     <section id=${"materia"+String(nro)}>
         <div class="materia_content">
             <div class="materia_top">
-            <img id="volver_semestre${semestreActivo}" src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin">
+            <img id="volver_semestre${semestreActivo}" src="http://127.0.0.1:3000/src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
             <h1 class="titulo_materia">${materia.nombre_materia}</h1>
         <div class="subtitulos_materia">
-            <h3 class="promedio_materia">Promedio: ##.##</h3>
-            <h3 class="creditos_materia">Créditos:${materia.creditos_materia}</h3>
+            <h3 class="promedio_materia">Promedio: ${materia.promedio}</h3>
+            <h3 class="creditos_materia">Créditos: ${materia.creditos_materia}</h3>
         </div>
         <div class="nota_deseada">
-            <h3 class="nota_d">Nota deseada: </h3>
+            <h3 class="nota_d">Nota deseada: ${materia.nota_deseada} </h3>
         </div>
     </div>
     <div class="notas">
-        <div class="detalle_nota">
-            <h4 class="texto_nota">Nota #</h4>
-            <p class="texto_nota">Nota</p>
-            <p class="texto_nota">%</p>
+        <div id=${"lista_notas_sem"+String(nro)}>
+
         </div>
+        <form id='crear_nota'>
+            <div class="detalle_nota" >
+                <input type="text" placeholder="Nombre" class="texto_nota" name="nombre_nota">
+                <input type="number" placeholder="Valor" class="texto_nota" name="valor_nota">
+                <input type="text" placeholder="Peso" class="texto_nota" name="peso_nota">
+            </div>
+            <button type="submit" class="btn_agregar_nota">
+                <h3 class="nombre_materia_semestre">Agregar nueva nota</h3>
+                <img src="http://127.0.0.1:3000/src/assets/plus.svg" alt="" class="semaddImg">
+            </button>
+        </form>
     </div>
-    <btn class="btn_agregar_nota">
-        <h3 class="nombre_materia_semestre">Agregar nueva nota</h3>
-    </btn>
     <div class="nota_necesaria">
         <h2 class="nota_necesaria_titulo">Necesitas ##.##</h2>
         <p class="n_necesaria_p">En el ##% restante para lograr tu nota ideal</p>
@@ -534,6 +553,77 @@ function mostrarMaterias()
     place.innerHTML = out;
     materiaIndv.innerHTML = section;
     asignarEventosMateria();
+    asignarEventosNotas();
+
 }
 
+function agregar_nota(e){
+    e.preventDefault();
 
+    
+    const formData = new FormData(e.target);
+
+    const nombre_nota = formData.get('nombre_nota');
+    const valor_nota = formData.get('valor_nota');
+    const peso_nota = formData.get('peso_nota');
+
+    let nota = {
+        nombre_nota: nombre_nota,
+        valor_nota: valor_nota,
+        peso_nota: peso_nota
+    }
+
+    user = JSON.parse(localStorage.getItem("usuario"));
+
+    if (nombre_nota === "" || valor_nota < 0 || valor_nota > 5 || peso_nota < 0 || peso_nota > 100) {
+        alert("erro al cargar nota")
+    }
+    else {
+
+        let array = user.semestres[semestreActivo - 1].materias[materiaActiva -1].notas; 
+        array.push(nota);
+        user.semestres[semestreActivo-1].materias[materiaActiva-1].notas = array;
+
+        localStorage.setItem("usuario", JSON.stringify(user));
+    }
+
+    mostrarNotas();
+
+}
+
+function mostrarNotas(){
+    let user = JSON.parse(localStorage.getItem("usuario"));
+    let place = document.querySelector('#lista_notas_sem'+String(materiaActiva));
+
+    let out="";
+    let notas = user.semestres[semestreActivo-1].materias[materiaActiva-1].notas;
+
+    notas.forEach(function(nota) {
+        out +=`
+            <div class="detalle_nota" >
+                <p class="texto_nota">${nota.nombre_nota}</p>
+                <p class="texto_nota">${nota.valor_nota}</p>
+                <p class="texto_nota">${nota.peso_nota}</p>
+            </div>
+        `;
+    })
+
+    place.innerHTML = out;
+
+}
+
+function actualizarSemestre(){
+    let creditos = 0;
+
+    let user = JSON.parse(localStorage.getItem("usuario"));
+    let materias = user.semestres[semestreActivo-1].materias;
+
+    materias.forEach(function(materia) {
+        creditos = user.semestres[semestreActivo-1].creditos + materia.creditos_materia;
+    })
+
+    user.semestres[semestreActivo-1].nro_materias = materias.length;
+    user.semestres[semestreActivo-1].creditos = creditos;
+    localStorage.setItem("usuario", JSON.stringify(user));  
+
+}

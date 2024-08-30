@@ -7,6 +7,8 @@
     margin: 0;
     padding: 0.2rem 2.5rem 0 2.5rem;
     height: 100%;
+    background-color: $white;
+    height: 550px;
 }
 
 .titulo_materia{
@@ -38,24 +40,24 @@
 }
 
 .notas{
-    height: 170px;
+    max-height: 170px;
+    margin: 2rem 0;
     overflow-y: scroll;
     overflow-x: hidden;
-    margin-bottom: 1rem;
 }
 
 .detalle_nota{
     display: flex;
     width: 95%;
     height: 43px;
-    background-color: $light-grey;
-    box-shadow: 5px 2px 3px rgba(0, 0, 0, 0.3);;
+    background-color: $primary;
     text-align: left;
+    justify-content: space-around;
     align-items: center;
     align-content: center;
     border-radius: 12px;
-    padding: 2px 5px 2px 5px;
     margin-bottom: 15px;
+    padding: 0 .3rem;
 }
 
 .texto_nota{
@@ -63,13 +65,18 @@
     flex: 1;
     font-size: 15;
     font-family: $title;
+    width: 1rem;
+    border: none;
+    border-radius: .5rem;
+    text-align: center;
 }
 
 .btn_agregar_nota{
     display: flex;
     width: 95%;
     height: 43px;
-    background-color: $secondary;
+    background-color: $red;
+    justify-content: space-around;
     text-align: left;
     align-items: center;
     align-content: center;
