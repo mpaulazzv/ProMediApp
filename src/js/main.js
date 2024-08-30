@@ -8,8 +8,8 @@ let user = JSON.parse(localStorage.getItem('usuario'));
 
 window.onload = init;
 
-function init(){
-    
+function init() {
+
     //Referencias a las secciones
     refs["splash"] = document.getElementById("splash");
     refs["login"] = document.getElementById("login");
@@ -25,7 +25,7 @@ function init(){
     refs["successRegistro"] = document.getElementById("successRegistro");
     refs["alertaLogin"] = document.getElementById("alertaLogin");
     refs["successLogin"] = document.getElementById("successLogin");
-    
+
 
     //Botones para la navegabilidad
     btns["btn_login_splash"] = document.getElementById("btn_login_splash");
@@ -55,8 +55,9 @@ function init(){
     forms["form_registro"] = document.getElementById("form_registro");
     forms["form_login"] = document.getElementById("form_login");
     forms["form_crear_sem"] = document.getElementById("crear_sem_form");
+    forms["form_agregar_materia"] = document.getElementById("form_agregar_materia");
 
-    asignarEventosMenu();   
+    asignarEventosMenu();
     asignarVolver();
     cargarSemestres();
     mostrarSemestres();
@@ -65,22 +66,21 @@ function init(){
 
     console.log(btns);
 
-    
+
 
 }
 
-function asignarEventosSemestre()
-{
-    let nro=0;
+function asignarEventosSemestre() {
+    let nro = 0;
     for (sem in user.semestres) {
         nro++;
         refs["semestre" + String(nro)] = document.getElementById("semestre" + String(nro));
         btns["btn_semestre" + String(nro) + "_semestres"] = document.getElementById("btn_semestre" + String(nro) + "_semestres");
         btns["btn_semestre" + String(nro) + "_home"] = document.getElementById("btn_semestre" + String(nro) + "_home");
         btns["2btn_semestre" + String(nro) + "_home"] = document.getElementById("2btn_semestre" + String(nro) + "_home");
-        btns["volver_semestres_"+String(nro)] = document.getElementById("volver_semestres_"+String(nro));
-        btns["btn_crearmateria_"+String(nro)] = document.getElementById("btn_crearmateria_"+String(nro));
-    
+        btns["volver_semestres_" + String(nro)] = document.getElementById("volver_semestres_" + String(nro));
+        btns["btn_crearmateria_" + String(nro)] = document.getElementById("btn_crearmateria_" + String(nro));
+
         if (btns["btn_semestre" + String(nro) + "_semestres"]) {
             btns["btn_semestre" + String(nro) + "_semestres"].addEventListener("click", cambiarSeccion);
         }
@@ -90,17 +90,17 @@ function asignarEventosSemestre()
         if (btns["2btn_semestre" + String(nro) + "_home"]) {
             btns["2btn_semestre" + String(nro) + "_home"].addEventListener("click", cambiarSeccion);
         }
-        if (btns["volver_semestres_"+String(nro)]) {
-            btns["volver_semestres_"+String(nro)].addEventListener("click", cambiarSeccion);
+        if (btns["volver_semestres_" + String(nro)]) {
+            btns["volver_semestres_" + String(nro)].addEventListener("click", cambiarSeccion);
         }
-        if (btns["btn_crearmateria_"+String(nro)]) {
-            btns["btn_crearmateria_"+String(nro)].addEventListener("click", cambiarSeccion);
+        if (btns["btn_crearmateria_" + String(nro)]) {
+            btns["btn_crearmateria_" + String(nro)].addEventListener("click", cambiarSeccion);
         }
     }
 }
 
 
-function asignarEventosMenu(){
+function asignarEventosMenu() {
 
     //Eventos botones
     btns["btn_login_splash"].addEventListener("click", cambiarSeccion);
@@ -130,49 +130,49 @@ function asignarEventosMenu(){
     forms["form_registro"].addEventListener("submit", registro);
     forms['form_login'].addEventListener('submit', login);
     forms['form_crear_sem'].addEventListener('submit', crearSemestre);
-    
+    forms["form_agregar_materia"].addEventListener("submit", agregar_materia);
+
 }
 
-function asignarVolver(){
+function asignarVolver() {
     let btns_volver = document.querySelectorAll(".volver_splash");
     for (let i = 0; i < btns_volver.length; i++) {
-        btns_volver[i].addEventListener("click", ()=>{
+        btns_volver[i].addEventListener("click", () => {
             cargarSeccion("splash");
         });
     }
 }
 
-function ocultar()
-{
+function ocultar() {
     for (let key in refs) {
         refs[key].classList.add("ocultar");
-        if(refs[key].classList[0] === "ventanaEmergente"){
+        if (refs[key].classList[0] === "ventanaEmergente") {
             refs[key].classList.remove("popUp");
         }
     }
 }
 
-function cambiarSeccion(e){ 
+function cambiarSeccion(e) {
     let seccion;
-    if(e.currentTarget.className === "nav"){
+    if (e.currentTarget.className === "nav") {
         seccion = e.target.id.split("_")[1];
 
-    }else{
+    } else {
         seccion = e.currentTarget.id.split("_")[1];
     }
-     
+
     cargarSeccion(seccion);
 }
 
 
 
-function cargarSeccion(seccion){
-    
+function cargarSeccion(seccion) {
+
     console.log(refs[seccion].classList[0]);
     console.log(refs[seccion].id)
-    if (refs[seccion].classList[0] === "ventanaEmergente"){
+    if (refs[seccion].classList[0] === "ventanaEmergente") {
         refs[seccion].classList.add("popUp");
-    }else{
+    } else {
         ocultar();
     }
 
@@ -181,8 +181,8 @@ function cargarSeccion(seccion){
 }
 
 
-function registro(e){
-    
+function registro(e) {
+
     e.preventDefault();
 
     //Obtención de los datos del formulario
@@ -198,41 +198,36 @@ function registro(e){
 
     //Validaciones
 
-    if(nombre === "" || telefono === "" || username === "" || password == "" || passwd_confirmation == "")
-        {
-            document.getElementById('msj_alerta_reg').innerText = 'Ningún campo puede ir vacío';
-            cargarSeccion('alertaRegistro');
-            
-        }else if(password.lengt <8)
-        {
-            document.getElementById('msj_alerta_reg').innerText = 'la contraseña debe tener al menos 8 caracteres';
-            cargarSeccion('alertaRegistro');
-        }else if(passwd_confirmation !== password)
-        {
-            document.getElementById('msj_alerta_reg').innerText = 'las contraseñas no coinciden';
-            cargarSeccion('alertaRegistro');
-        }else
-        {
-            //Se crea el usuario y se guarda en localstorage
+    if (nombre === "" || telefono === "" || username === "" || password == "" || passwd_confirmation == "") {
+        document.getElementById('msj_alerta_reg').innerText = 'Ningún campo puede ir vacío';
+        cargarSeccion('alertaRegistro');
 
-            user = 
-            {
-                nombre: nombre,
-                telefono: telefono,
-                username: username,
-                password: password,
-                semestres: []
-            }
+    } else if (password.lengt < 8) {
+        document.getElementById('msj_alerta_reg').innerText = 'la contraseña debe tener al menos 8 caracteres';
+        cargarSeccion('alertaRegistro');
+    } else if (passwd_confirmation !== password) {
+        document.getElementById('msj_alerta_reg').innerText = 'las contraseñas no coinciden';
+        cargarSeccion('alertaRegistro');
+    } else {
+        //Se crea el usuario y se guarda en localstorage
 
-            localStorage.setItem("usuario", JSON.stringify(user));
-
-            cargarSeccion('successRegistro');
-
+        user =
+        {
+            nombre: nombre,
+            telefono: telefono,
+            username: username,
+            password: password,
+            semestres: []
         }
+
+        localStorage.setItem("usuario", JSON.stringify(user));
+
+        cargarSeccion('successRegistro');
+
+    }
 }
 
-function login(e)
-{
+function login(e) {
     e.preventDefault();
 
     //Obtención de los datos del formulario
@@ -249,29 +244,23 @@ function login(e)
     //Validar que exista el usuario registrado
 
 
-    if(!localStorage.getItem('usuario'))
-    {
+    if (!localStorage.getItem('usuario')) {
         console.log('No hay usuario')
         cargarSeccion('alertaLogin');
-    }else
-    {
+    } else {
         let user = JSON.parse(localStorage.getItem('usuario'));
         console.log(user);
         console.log(user.usename);
         console.log(username);
 
-        if(username === "" || password=== "")
-        {
+        if (username === "" || password === "") {
             cargarSeccion('alertaLogin');
         }
-        else if(user.username !== username)
-        {
+        else if (user.username !== username) {
             cargarSeccion('alertaLogin')
-        }else if(user.password !== password)
-        {
+        } else if (user.password !== password) {
             cargarSeccion('alertaLogin');
-        }else
-        {
+        } else {
             cargarSeccion('successLogin');
             cargarSemestres();
         }
@@ -279,16 +268,16 @@ function login(e)
 
 }
 
-function cargarSemestres(){
+function cargarSemestres() {
     let lista = document.querySelector('#sem_list');
     let desCrear = document.querySelector('.desCrearSem');
     let bnv = document.querySelector('#bnv');
     let semAct = document.querySelector('#btn_semestre_actual');
-    let wrapper =  document.querySelector('#wrapper_home');
+    let wrapper = document.querySelector('#wrapper_home');
 
     let user = JSON.parse(localStorage.getItem('usuario'));
 
-    if(user.semestres.length !=0) {
+    if (user.semestres.length != 0) {
         desCrear.classList.add('ocultar');
         lista.classList.remove('ocultar');
         bnv.classList.add('ocultar');
@@ -299,7 +288,7 @@ function cargarSemestres(){
     }
 }
 
-function crearSemestre(e){
+function crearSemestre(e) {
     e.preventDefault();
 
     let user = JSON.parse(localStorage.getItem('usuario'));
@@ -314,30 +303,30 @@ function crearSemestre(e){
         materias: []
     });
 
-    localStorage.setItem("usuario",JSON.stringify(user));
+    localStorage.setItem("usuario", JSON.stringify(user));
     mostrarSemestres();
 }
 
-function mostrarSemestres(){
-    
+function mostrarSemestres() {
+
     let user = JSON.parse(localStorage.getItem("usuario"));
-    
+
     let semIndv = document.querySelector('#section_semestres');
     let place = document.querySelector('#sem_list');
     let place_home = document.querySelector('#btn_semestre_actual');
     let place_slider = document.querySelector('#slider_home');
-    
+
     let section = "";
     let out = "";
     let out_home = "";
-    let out_slider ="";
+    let out_slider = "";
 
     let nro = 0;
 
-    for(sem in user.semestres ){
+    for (sem in user.semestres) {
         nro++;
         out += `
-            <div id=${"btn_semestre"+String(nro)+"_semestres"} class="box_semestre">
+            <div id=${"btn_semestre" + String(nro) + "_semestres"} class="box_semestre">
                 <h3 class="nombre_semestre">${user.semestres[sem].nombre}</h3>
                 <div class="semestre_body">
                     <div class="info_semestre">
@@ -349,7 +338,7 @@ function mostrarSemestres(){
             </div>
         `;
         out_home = `
-            <div id=${"btn_semestre" + String(nro)+"_home"}>
+            <div id=${"btn_semestre" + String(nro) + "_home"}>
                 <p class="semTitle">${user.semestres[sem].nombre}</p>
                 <div class="semBottom">
                     <div class="contBottom">
@@ -360,8 +349,8 @@ function mostrarSemestres(){
                 </div>
             </div>
         `;
-        out_slider +=`
-            <div id=${"2btn_semestre" + String(nro)+"_home"} class="semOpc">
+        out_slider += `
+            <div id=${"2btn_semestre" + String(nro) + "_home"} class="semOpc">
                 <p class="opcTitle">${user.semestres[sem].nombre}</p>
                 <div class="opcBottom">
                     <div class="opcCont">
@@ -374,10 +363,10 @@ function mostrarSemestres(){
         `;
 
         section += `
-            <section id=${"semestre"+String(nro)} class="ocultar">
+            <section id=${"semestre" + String(nro)} class="ocultar">
                 <div class="semestreContent">
                     <div class="semestreTop">
-                        <img id=${"volver_semestres_"+String(nro)} src="http://127.0.0.1:3000/src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
+                        <img id=${"volver_semestres_" + String(nro)} src="http://127.0.0.1:3000/src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
                         <h1 class="semestre_titulo">${user.semestres[sem].nombre}</h1>
                         <div class="semestre_subtitulos">
                             <h3 class="promedio_semestre">Promedio: ${user.semestres[sem].promedio}</h3>
@@ -387,7 +376,7 @@ function mostrarSemestres(){
                     <p class="desCrearMat"> En este momento este semestre no tiene materias. Comienza agregando unas materias</p>
                     <div id="mat_sem" class="materias_semestre ocultar">
                     </div>
-                    <div class="btn_agregar_materia" id=${"btn_crearmateria_"+String(nro)}>
+                    <div class="btn_agregar_materia" id=${"btn_crearmateria_" + String(nro)}>
                         <h3 class="nombre_materia_semestre">Agregar nueva materia</h3>
                         <img src="http://127.0.0.1:3000/src/assets/plus.svg" alt="" class="semaddImg">
                     </div>
@@ -397,8 +386,8 @@ function mostrarSemestres(){
         `;
     }
 
-    place.innerHTML =  out;
-    semIndv.innerHTML =  section;
+    place.innerHTML = out;
+    semIndv.innerHTML = section;
     place_home.innerHTML = out_home;
     place_slider.innerHTML = out_slider;
 
@@ -406,7 +395,7 @@ function mostrarSemestres(){
 
 }
 
-function mostrar_infoPerfil(){
+function mostrar_infoPerfil() {
 
     let username_home = document.getElementById('username_home');
     let username_usuario = document.getElementById('username_usuario');
@@ -417,5 +406,59 @@ function mostrar_infoPerfil(){
     username_usuario.innerText = user.username;
     telefono_usuario.innerText = user.telefono;
     nombre_usuario.innerText = user.nombre;
+
+}
+
+
+function agregar_materia(e) {
+
+
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    const nombre_materia = formData.get('nombre_materia');
+    const creditos_materia = formData.get('creditos_materia');
+
+    let materia = {
+        nombre_materia: nombre_materia,
+        creditos_materia: creditos_materia
+
+    }
+
+    user = JSON.parse(localStorage.getItem("usuario"));
+
+    if (nombre_materia === "" || creditos_materia === "") {
+        cargarSeccion('alertacrear_mat');
+    }
+    else {
+        if (!user.materias) {
+            user.materias = [{
+                nombre_materia: nombre_materia,
+                creditos_materia: creditos_materia
+
+            }];
+        }
+        else {
+            let array = user.materias;
+            array.push(materia);
+            user.materias = array;
+
+        }
+        localStorage.setItem("usuario", JSON.stringify(user));
+
+        crearNodomateria(nombre_materia, creditos_materia);
+    }
+
+
+}
+
+
+function crearNodomateria(nombre, creditos) {
+    var nodo = '<div class="materia_semestre" id="btn_materia">';
+    // nodo += '<div class="mat_row">';
+    nodo += '<h3 class="nombre_materia_semestre">' + nombre + '</h3></div>';
+    // nodo += '<h3 class="credito_materia_semestre">' + creditos + '</h3></div></div>';
+    document.getElementById("mat_semestre").innerHTML += nodo;
 
 }
