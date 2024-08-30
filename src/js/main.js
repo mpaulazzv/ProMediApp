@@ -25,6 +25,7 @@ function init() {
     refs["successRegistro"] = document.getElementById("successRegistro");
     refs["alertaLogin"] = document.getElementById("alertaLogin");
     refs["successLogin"] = document.getElementById("successLogin");
+    refs["alertacrear_mat"] = document.getElementById("alertacrear_mat");
 
 
     //Botones para la navegabilidad
@@ -50,6 +51,7 @@ function init() {
     btns["btn_login_regresar"] = document.getElementById("btn_login_regresar");
     btns["btn_login_registroCompleto"] = document.getElementById("btn_login_registroCompleto");
     btns["btn_Home_loginCompleto"] = document.getElementById("btn_Home_loginCompleto");
+    btns["btn_crearmateria_regresar"] = document.getElementById("btn_crearmateria_regresar");
 
     //Forms
     forms["form_registro"] = document.getElementById("form_registro");
@@ -125,6 +127,7 @@ function asignarEventosMenu() {
     btns["btn_login_regresar"].addEventListener("click", cambiarSeccion);
     btns["btn_login_registroCompleto"].addEventListener("click", cambiarSeccion);
     btns["btn_Home_loginCompleto"].addEventListener("click", cambiarSeccion);
+    btns["btn_crearmateria_regresar"].addEventListener("click", cambiarSeccion);
 
     //Eventos form
     forms["form_registro"].addEventListener("submit", registro);
@@ -432,19 +435,13 @@ function agregar_materia(e) {
         cargarSeccion('alertacrear_mat');
     }
     else {
-        if (!user.materias) {
-            user.materias = [{
-                nombre_materia: nombre_materia,
-                creditos_materia: creditos_materia
 
-            }];
-        }
-        else {
-            let array = user.materias;
-            array.push(materia);
-            user.materias = array;
 
-        }
+        let array = user.materias;
+        array.push(materia);
+        user.semestres[0].materias = array;
+
+
         localStorage.setItem("usuario", JSON.stringify(user));
 
         crearNodomateria(nombre_materia, creditos_materia);
