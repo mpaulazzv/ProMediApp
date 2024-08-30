@@ -92,7 +92,7 @@
                 <p class="opcDesc"> Aqui encontraras rápido acceso a tus semestres más recientes. Ve a crealos. </p>
             </div>
             <div class="semAct ocultar" id="btn_semestre_actual">
-               
+
             </div>
             <div id="wrapper_home" class="wrapper ocultar">
                 <div id="slider_home" class="semSlider">
@@ -110,32 +110,18 @@
     <section id="semestre" class="ocultar">
         <div class="semestreContent">
             <div class="semestreTop">
-                <img id="volver_semestres"src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin">
+                <img id="volver_semestres" src="./assets/arrow-left.svg" alt="arrow" class="arrowLogin">
                 <h1 class="semestre_titulo">Semestre #</h1>
                 <div class="semestre_subtitulos">
                     <h3 class="promedio_semestre">Promedio: ##.##</h3>
                     <h3 class="creditos_semestre">Créditos: #</h3>
                 </div>
             </div>
-            <div class="materias_semestre">
+            <div class="materias_semestre" id="mat_semestre">
                 <div class="materia_semestre" id="btn_materia">
                     <h3 class="nombre_materia_semestre">Materia Nro. #</h3>
                 </div>
-                <div class="materia_semestre">
-                    <h3 class="nombre_materia_semestre">Materia Nro. #</h3>
-                </div>
-                <div class="materia_semestre">
-                    <h3 class="nombre_materia_semestre">Materia Nro. #</h3>
-                </div>
-                <div class="materia_semestre">
-                    <h3 class="nombre_materia_semestre">Materia Nro. #</h3>
-                </div>
-                <div class="materia_semestre">
-                    <h3 class="nombre_materia_semestre">Materia Nro. #</h3>
-                </div>
-                <div class="materia_semestre">
-                    <h3 class="nombre_materia_semestre">Materia Nro. #</h3>
-                </div>
+
             </div>
             <div class="btn_agregar_materia" id="btn_crearmateria">
                 <h3 class="nombre_materia_semestre">Agregar nueva materia</h3>
@@ -201,14 +187,14 @@
                         <h3 class="nv_elemento">Nueva materia</h3>
                         <img id="cerrar_semestre" class="cancelar" src="./assets/cancelar.svg" alt="" height="18px">
                     </div>
-                    <form>
+                    <form class="form" id="form_agregar_materia">
                         <p class="labelForm">Nombre</p>
-                        <input type="text" placeholder="Ingrese nombre" class="inputForm">
+                        <input type="text" placeholder="Ingrese nombre" class="inputForm" name="nombre_materia">
                         <p class="labelForm">Créditos</p>
-                        <input type="number" placeholder="Nro. Creditos" class="inputForm">
-                        <btn class="btnForm btn_crear">
+                        <input type="number" placeholder="Nro. Creditos" class="inputForm" name="creditos_materia">
+                        <button class="btnForm btn_crear" type="submit">
                             <p class="btn_crear_txt">Agregar</p>
-                        </btn>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -241,9 +227,10 @@
                     <h1>Semestres</h1>
                     <p>Todos tus semestres</p>
                 </div>
-                <p class="desCrearSem"> Aqui encontraras todos tus semestres a gestionar. Aunque aun no tienes semestres.</p>
+                <p class="desCrearSem"> Aqui encontraras todos tus semestres a gestionar. Aunque aun no tienes
+                    semestres.</p>
                 <div id="sem_list" class="lista_semestres ocultar">
-                    
+
                 </div>
                 <div class="options_semestres">
                     <div class="nuevo_semestre" id="btn_crearsemestre">
@@ -284,8 +271,8 @@
                 <img src="./assets/alert.svg" height="80px">
                 <h1 class="alerta_txt">Datos incorrectos</h1>
                 <p id="msj_alerta_reg" class="msj_alerta"></p>
-                <div id="btn_registro_regresar" class="btn_regresar" id="btn_registro_alerta">Regresar</div>  
-            </div>  
+                <div id="btn_registro_regresar" class="btn_regresar" id="btn_registro_alerta">Regresar</div>
+            </div>
         </div>
     </section>
     <section class="ventanaEmergente alertas ocultar" id="successRegistro">
@@ -293,8 +280,8 @@
             <div class="recuadro_alerta">
                 <img src="./assets/success.svg" height="80px">
                 <h1 class="alerta_txt">Creó su cuenta satisfactoriamente. Debe iniciar sesión</h1>
-                <div id="btn_login_registroCompleto" class="btn_regresar">Conitnuar</div>  
-            </div>  
+                <div id="btn_login_registroCompleto" class="btn_regresar">Conitnuar</div>
+            </div>
         </div>
     </section>
     <section class="ventanaEmergente alertas ocultar" id="alertaLogin">
@@ -302,8 +289,8 @@
             <div class="recuadro_alerta">
                 <img src="./assets/alert.svg" height="80px">
                 <h1 class="alerta_txt">Credenciales de inicio de sesión incorrectas</h1>
-                <div id="btn_login_regresar" class="btn_regresar" id="btn_login_alerta">Regresar</div>  
-            </div>  
+                <div id="btn_login_regresar" class="btn_regresar" id="btn_login_alerta">Regresar</div>
+            </div>
         </div>
     </section>
     <section class="ventanaEmergente alertas ocultar" id="successLogin">
@@ -311,8 +298,8 @@
             <div class="recuadro_alerta">
                 <img src="./assets/success.svg" height="80px">
                 <h1 class="alerta_txt">Ha iniciado sesión </h1>
-                <div id="btn_Home_loginCompleto" class="btn_regresar" id="btn_Home_success_login">Continuar</div>  
-            </div>  
+                <div id="btn_Home_loginCompleto" class="btn_regresar" id="btn_Home_success_login">Continuar</div>
+            </div>
         </div>
     </section>
     <div id="section_semestres">
