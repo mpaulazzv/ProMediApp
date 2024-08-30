@@ -3,6 +3,8 @@ let refs = [];
 let btns = [];
 let forms = [];
 let usuarios = [];
+let user = JSON.parse(localStorage.getItem('usuario'));
+
 
 window.onload = init;
 
@@ -56,29 +58,39 @@ function init(){
 
     asignarEventosMenu();   
     asignarVolver();
-    
+    cargarSemestres();
     mostrarSemestres();
+
+    console.log(btns);
+
     
-    let user = JSON.parse(localStorage.getItem('usuario'));
-    let b1 = "btn_semestres_semestre";
-    let b2 = "btn_home_semestre";
-    let b3 = "2btn_home_semestre";
+
+}
+
+function asignarEventosSemestre()
+{
     let nro=0;
-    for(sem in user.semestres ){
-
+    for (sem in user.semestres) {
         nro++;
-
-        refs["semestre"+String(nro)] = document.getElementById("semestre"+String(nro));
-        
-        btns[b1+String(nro)] = document.getElementById(b1+String(nro));
-        btns[b2+String(nro)] = document.getElementById(b2+String(nro));
-        btns[b3+String(nro)] = document.getElementById(b3+String(nro));
-
-        btns[b1+String(nro)].addEventListener("click", cambiarSeccion);
-        btns[b2+String(nro)].addEventListener("click", cambiarSeccion);
-        btns[b3+String(nro)].addEventListener("click", cambiarSeccion);
+        refs["semestre" + String(nro)] = document.getElementById("semestre" + String(nro));
+        btns["btn_semestre" + String(nro) + "_semestres"] = document.getElementById("btn_semestre" + String(nro) + "_semestres");
+        btns["btn_semestre" + String(nro) + "_home"] = document.getElementById("btn_semestre" + String(nro) + "_home");
+        btns["2btn_semestre" + String(nro) + "_home"] = document.getElementById("2btn_semestre" + String(nro) + "_home");
+        btns["volver_semestres_"+String(nro)] = document.getElementById("volver_semestres_"+String(nro));
+    
+        if (btns["btn_semestre" + String(nro) + "_semestres"]) {
+            btns["btn_semestre" + String(nro) + "_semestres"].addEventListener("click", cambiarSeccion);
+        }
+        if (btns["btn_semestre" + String(nro) + "_home"]) {
+            btns["btn_semestre" + String(nro) + "_home"].addEventListener("click", cambiarSeccion);
+        }
+        if (btns["2btn_semestre" + String(nro) + "_home"]) {
+            btns["2btn_semestre" + String(nro) + "_home"].addEventListener("click", cambiarSeccion);
+        }
+        if (btns["volver_semestres_"+String(nro)]) {
+            btns["volver_semestres_"+String(nro)].addEventListener("click", cambiarSeccion);
+        }
     }
-
 }
 
 
@@ -135,6 +147,7 @@ function ocultar()
 }
 
 function cambiarSeccion(e){ 
+    console.log(e.target);
     let seccion;
     if(e.currentTarget.className === "nav"){
         seccion = e.target.id.split("_")[1];
@@ -312,15 +325,12 @@ function mostrarSemestres(){
     let out_home = "";
     let out_slider ="";
 
-    let b1 = "btn_semestres_semestre";
-    let b2 = "btn_home_semestre";
-    let b3 = "2btn_home_semestre";
     let nro = 0;
 
     for(sem in user.semestres ){
         nro++;
         out += `
-            <div id=${b1 + String(nro)} class="box_semestre">
+            <div id=${"btn_semestre"+String(nro)+"_semestres"} class="box_semestre">
                 <h3 class="nombre_semestre">${user.semestres[sem].nombre}</h3>
                 <div class="semestre_body">
                     <div class="info_semestre">
@@ -332,7 +342,7 @@ function mostrarSemestres(){
             </div>
         `;
         out_home = `
-            <div id=${b2 + String(nro)}>
+            <div id=${"btn_semestre" + String(nro)+"_home"}>
                 <p class="semTitle">${user.semestres[sem].nombre}</p>
                 <div class="semBottom">
                     <div class="contBottom">
@@ -344,7 +354,7 @@ function mostrarSemestres(){
             </div>
         `;
         out_slider +=`
-            <div id=${b3 + String(nro)} class="semOpc">
+            <div id=${"2btn_semestre" + String(nro)+"_home"} class="semOpc">
                 <p class="opcTitle">${user.semestres[sem].nombre}</p>
                 <div class="opcBottom">
                     <div class="opcCont">
@@ -360,7 +370,7 @@ function mostrarSemestres(){
             <section id=${"semestre"+String(nro)} class="ocultar">
                 <div class="semestreContent">
                     <div class="semestreTop">
-                        <img id="volver_semestres"src="http://127.0.0.1:30007src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
+                        <img id=${"volver_semestres_"+String(nro)} src="http://127.0.0.1:1234/src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
                         <h1 class="semestre_titulo">${user.semestres[sem].nombre}</h1>
                         <div class="semestre_subtitulos">
                             <h3 class="promedio_semestre">${user.semestres[sem].promedio}</h3>
@@ -378,5 +388,7 @@ function mostrarSemestres(){
     semIndv.innerHTML =  section;
     place_home.innerHTML = out_home;
     place_slider.innerHTML = out_slider;
+
+    asignarEventosSemestre();
 
 }
