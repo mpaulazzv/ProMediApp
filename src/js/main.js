@@ -67,7 +67,6 @@ function init() {
     mostrarSemestres();
     mostrar_infoPerfil();
 
-    console.log(btns);
 
 }
 
@@ -108,27 +107,20 @@ function asignarEventosMateria() {
         nro++;
         refs["materia"+String(nro)] = document.getElementById("materia"+String(nro));
         btns["btn_materia"+String(nro)] = document.getElementById("btn_materia"+String(nro));
-        btns["volver_semestre"+semestreActivo] = document.getElementById("volver_semestre"+semestreActivo);
+        //btns["volver_semestre"+semestreActivo+"_m"+materiaActiva] = document.getElementById("volver_semestre"+semestreActivo+"_m"+materiaActiva);
 
         if (btns["btn_materia"+String(nro)] ) {
             btns["btn_materia"+String(nro)].addEventListener("click", cambiarSeccion);
         }
-        if (btns["volver_semestre"+semestreActivo] ) {
-            btns["volver_semestre"+semestreActivo].addEventListener("click", cambiarSeccion);
+        /*
+        if (btns["volver_semestre"+semestreActivo+"_m"+materiaActiva] ) {
+            btns["volver_semestre"+semestreActivo+"_m"+materiaActiva].addEventListener("click", cambiarSeccion);
         }
+            */
 
     ;})
 
 }
-
-function asignarEventosNotas(){
-    forms["form_crear_nota"] = document.getElementById("crear_nota");
-    if(forms["form_crear_nota"]){
-        forms["form_crear_nota"].addEventListener("submit", agregar_nota);
-    }
-    
-}
-
 
 function asignarEventosMenu() {
 
@@ -136,20 +128,13 @@ function asignarEventosMenu() {
     btns["btn_login_splash"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_splash"].addEventListener("click", cambiarSeccion);
     btns["btn_Home_splash"].addEventListener("click", cambiarSeccion);
-    //btns["btn_successLogin"].addEventListener("click", cambiarSeccion);
-    //btns["btn_alertaRegistro"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_login"].addEventListener("click", cambiarSeccion);
-    //btns["btn_semestre_actual"].addEventListener("click", cambiarSeccion);
     btns["btn_semestres_home"].addEventListener("click", cambiarSeccion);
-    //btns["btn_materia"].addEventListener("click", cambiarSeccion);
-    //btns["volver_semestre"].addEventListener("click", cambiarSeccion);
     btns["volver_semestres"].addEventListener("click", cambiarSeccion);
     btns["volver_Home"].addEventListener("click", cambiarSeccion);
     btns["btn_crearsemestre"].addEventListener("click", cambiarSeccion);
     btns["btn_crearmateria"].addEventListener("click", cambiarSeccion);
     btns["cerrar_semestres"].addEventListener("click", cambiarSeccion);
-    btns["cerrar_semestre"].addEventListener("click", cambiarSeccion);
-    //btns["btn_semestre_Home"].addEventListener("click", cambiarSeccion);
     btns["btn_splash_cerrarSesion"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_regresar"].addEventListener("click", cambiarSeccion);
     btns["btn_login_regresar"].addEventListener("click", cambiarSeccion);
@@ -191,7 +176,6 @@ function cambiarSeccion(e) {
     } else {
         seccion = e.currentTarget.id.split("_")[1];
     }
-
     if (seccion.startsWith("semestre") && seccion !== "semestres") {
         semestreActivo = parseInt(seccion.replace("semestre", ""), 10); 
         mostrarMaterias();
@@ -208,8 +192,7 @@ function cambiarSeccion(e) {
 
 function cargarSeccion(seccion) {
 
-    console.log(refs[seccion].classList[0]);
-    console.log(refs[seccion].id)
+
     if (refs[seccion].classList[0] === "ventanaEmergente") {
         refs[seccion].classList.add("popUp");
     } else {
@@ -274,24 +257,17 @@ function login(e) {
 
     const formData = new FormData(e.target);
 
-    console.log(e.target);
-
     let username = formData.get('username');
     let password = formData.get('password');
 
-    console.log(formData);
 
     //Validar que exista el usuario registrado
 
 
     if (!localStorage.getItem('usuario')) {
-        console.log('No hay usuario')
         cargarSeccion('alertaLogin');
     } else {
         let user = JSON.parse(localStorage.getItem('usuario'));
-        console.log(user);
-        console.log(user.usename);
-        console.log(username);
 
         if (username === "" || password === "") {
             cargarSeccion('alertaLogin');
@@ -499,8 +475,7 @@ function mostrarMaterias()
     let user = JSON.parse(localStorage.getItem("usuario"));
     let place = document.querySelector('#mat_sem'+String(semestreActivo));
     let materiaIndv = document.querySelector("#section_materias");
-    console.log(place);
-    console.log("semestre act: "+  semestreActivo);
+    //calc_nota_necesaria();
 
     let out="";
     let section = "";
@@ -520,7 +495,7 @@ function mostrarMaterias()
     <section id=${"materia"+String(nro)}>
         <div class="materia_content">
             <div class="materia_top">
-            <img id="volver_semestre${semestreActivo}" src="http://127.0.0.1:3000/src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
+            <img id="volver_semestre${semestreActivo}_m${String(nro)}" src="http://127.0.0.1:3000/src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
             <h1 class="titulo_materia">${materia.nombre_materia}</h1>
         <div class="subtitulos_materia">
             <h3 class="promedio_materia">Promedio: ${materia.promedio}</h3>
@@ -534,7 +509,7 @@ function mostrarMaterias()
         <div id=${"lista_notas_sem"+String(nro)}>
 
         </div>
-        <form id='crear_nota'>
+        <form id='crear_nota_m${String(nro)}'>
             <div class="detalle_nota" >
                 <input type="text" placeholder="Nombre" class="texto_nota" name="nombre_nota">
                 <input type="number" placeholder="Valor" class="texto_nota" name="valor_nota">
@@ -558,15 +533,26 @@ function mostrarMaterias()
 
     place.innerHTML = out;
     materiaIndv.innerHTML = section;
+
+    let cerrarCrearM = document.getElementById("static_id_cerrar");
+
+    if(cerrarCrearM){
+        cerrarCrearM.id = "cerrar_semestre" + semestreActivo;
+        let btn_cerrar = document.getElementById("cerrar_semestre" + semestreActivo);
+        btn_cerrar.addEventListener("click", cambiarSeccion);
+        cerrarCrearM = document.getElementById("cerrar_semestre" + semestreActivo);
+    }else if(cerrarCrearM){
+        let btn_cerrar = document.getElementById("cerrar_semestre" + semestreActivo);
+        btn_cerrar.addEventListener("click", cambiarSeccion);
+    }
+
     asignarEventosMateria();
-    asignarEventosNotas();
 
 }
 
 function agregar_nota(e){
     e.preventDefault();
 
-    
     const formData = new FormData(e.target);
 
     const nombre_nota = formData.get('nombre_nota');
@@ -594,6 +580,7 @@ function agregar_nota(e){
     }
 
     mostrarNotas();
+    //calc_nota_necesaria();
 
 }
 
@@ -604,7 +591,13 @@ function mostrarNotas(){
     let out="";
     let notas = user.semestres[semestreActivo-1].materias[materiaActiva-1].notas;
 
-    calc_nota_necesaria();
+    let formAddNota = document.getElementById('crear_nota_m'+materiaActiva);
+
+    formAddNota.addEventListener("submit", agregar_nota);
+
+    let volver_sem = document.getElementById("volver_semestre"+semestreActivo+"_m"+materiaActiva);
+
+    volver_sem.addEventListener("click", cambiarSeccion);
 
     notas.forEach(function(nota) {
         out +=`
