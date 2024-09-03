@@ -20,7 +20,6 @@ function init() {
     refs["semestres"] = document.getElementById("semestres");
     refs["Usuario"] = document.getElementById("Usuario");
     refs["semestre"] = document.getElementById("semestre");
-    //refs["materia"] = document.getElementById("materia");
     refs["crearmateria"] = document.getElementById("crearmateria");
     refs["crearsemestre"] = document.getElementById("crearsemestre");
     refs["alertaRegistro"] = document.getElementById("alertaRegistro");
@@ -37,7 +36,6 @@ function init() {
     btns["btn_successLogin"] = document.getElementById("btn_successLogin");
     btns["btn_alertaRegistro"] = document.getElementById("btn_alertaRegistro");
     btns["btn_registro_login"] = document.getElementById("btn_registro_login");
-    //btns["btn_semestre_actual"] = document.getElementById("btn_semestre_actual")
     btns["btn_semestres_home"] = document.getElementById("btn_semestres_home")
     btns["btn_materia"] = document.getElementById("btn_materia");
     btns["volver_semestre"] = document.getElementById("volver_semestre");
@@ -47,7 +45,6 @@ function init() {
     btns["btn_crearmateria"] = document.getElementById("btn_crearmateria");
     btns["cerrar_semestres"] = document.getElementById("cerrar_semestres");
     btns["cerrar_semestre"] = document.getElementById("cerrar_semestre");
-    //btns["btn_semestre_Home"] = document.getElementById("btn_semestre_Home");
     btns["btn_splash_cerrarSesion"] = document.getElementById("btn_splash_cerrarSesion");
     btns["btn_registro_regresar"] = document.getElementById("btn_registro_regresar");
     btns["btn_login_regresar"] = document.getElementById("btn_login_regresar");
@@ -112,11 +109,6 @@ function asignarEventosMateria() {
         if (btns["btn_materia"+String(nro)] ) {
             btns["btn_materia"+String(nro)].addEventListener("click", cambiarSeccion);
         }
-        /*
-        if (btns["volver_semestre"+semestreActivo+"_m"+materiaActiva] ) {
-            btns["volver_semestre"+semestreActivo+"_m"+materiaActiva].addEventListener("click", cambiarSeccion);
-        }
-            */
 
     ;})
 
@@ -414,6 +406,8 @@ function mostrarSemestres() {
 
 function mostrar_infoPerfil() {
 
+    let user = JSON.parse(localStorage.getItem("usuario"));
+
     let username_home = document.getElementById('username_home');
     let username_usuario = document.getElementById('username_usuario');
     let telefono_usuario = document.getElementById('telefono_usuario');
@@ -475,7 +469,6 @@ function mostrarMaterias()
     let user = JSON.parse(localStorage.getItem("usuario"));
     let place = document.querySelector('#mat_sem'+String(semestreActivo));
     let materiaIndv = document.querySelector("#section_materias");
-    //calc_nota_necesaria();
 
     let out="";
     let section = "";
@@ -512,7 +505,7 @@ function mostrarMaterias()
         <form id='crear_nota_m${String(nro)}'>
             <div class="detalle_nota" >
                 <input type="text" placeholder="Nombre" class="texto_nota" name="nombre_nota">
-                <input type="number" placeholder="Valor" class="texto_nota" name="valor_nota">
+                <input type="number" step="0.01" placeholder="Valor" class="texto_nota" name="valor_nota">
                 <input type="text" placeholder="Peso" class="texto_nota" name="peso_nota">
             </div>
             <button type="submit" class="btn_agregar_nota">
@@ -522,8 +515,8 @@ function mostrarMaterias()
         </form>
     </div>
     <div class="nota_necesaria">
-        <h2 class="nota_necesaria_titulo">Necesitas ${materia.nota_necesaria.toFixed(2)}</h2>
-        <p class="n_necesaria_p">En el${materia.porcentaje_restante}% restante para lograr tu nota ideal</p>
+        <h2 id="${"nota_necesaria_m"+String(nro)}" class="nota_necesaria_titulo"></h2>
+        <p id="${"porcentaje_restante_m"+String(nro)}"class="n_necesaria_p"></p>
     </div>
     </div>
     <nav-main class="nav"></nav-main>
@@ -588,6 +581,7 @@ function mostrarNotas(){
     let user = JSON.parse(localStorage.getItem("usuario"));
     let place = document.querySelector('#lista_notas_sem'+String(materiaActiva));
 
+
     let out="";
     let notas = user.semestres[semestreActivo-1].materias[materiaActiva-1].notas;
 
@@ -610,6 +604,8 @@ function mostrarNotas(){
     })
 
     place.innerHTML = out;
+    calc_nota_necesaria();
+
 
 }
 
@@ -641,8 +637,8 @@ function calc_nota_necesaria(){
     let porcentajeRestante = 0;
 
     notas.forEach(function(nota) {
-        porcentajeEvaluado += nota.peso_nota;
-        notaAcumulada += (nota.valor_nota * (nota.peso_nota / 100));
+        porcentajeEvaluado += parseFloat(nota.peso_nota);
+        notaAcumulada += (parseFloat(nota.valor_nota) * (parseFloat(nota.peso_nota) / 100));
     });
 
     porcentajeRestante = 100 - porcentajeEvaluado;
@@ -651,6 +647,13 @@ function calc_nota_necesaria(){
 
     materia.nota_necesaria = notaNecesaria;
     materia.porcentaje_restante = porcentajeRestante;
+
+    document.getElementById("nota_necesaria_m" + materiaActiva).innerText = 
+    "Necesitas " + notaNecesaria.toFixed(2);
+
+    document.getElementById("porcentaje_restante_m" + materiaActiva).innerText =
+    "En el" + porcentajeRestante + "% restante para lograr tu nota ideal";
+
     localStorage.setItem("usuario", JSON.stringify(user));
 
 }
