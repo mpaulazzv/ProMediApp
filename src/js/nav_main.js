@@ -8,19 +8,18 @@ class navMain extends HTMLElement{
         <div class="mainNav">
             <a  class="mainOpc">
                 <div id="btn_semestres" class="opc_nav">
-                    <img src='http://127.0.0.1:3000/src/assets/semestre.svg' alt="">
+                    <img src='http://127.0.0.1:3000/src/assets/semestre.svg' alt="" class="imgMainOpc">
                     <p>Semestres</p>
                 </div>
             </a>
             <a  class="mainOpc">
                 <div id="btn_Home" class="opc_nav">
-                    <img src="http://127.0.0.1:3000/src/assets/home.svg" alt="" id="img-home">
-                    <p >Home</p>
+                    <img src="http://127.0.0.1:3000/src/assets/logo.png" alt="" id="btn_Home" class="logoApp">
                 </div>
             </a>
             <a class="mainOpc" >
                 <div id="btn_Usuario" class = "opc_nav">
-                    <img src="http://127.0.0.1:3000/src/assets/user.svg" alt="">
+                    <img src="http://127.0.0.1:3000/src/assets/user.svg" alt="" class="imgMainOpc">
                     <p >Perfil</p>
                 </div>
             </a>

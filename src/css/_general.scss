@@ -52,8 +52,8 @@ a{
     position: absolute;
     bottom: -1.5rem;
     margin: 0;
+    padding: 0;
     background-color: #8bd0fc;
-    padding: .5rem;
     display: flex;
     justify-content: center;
     width: 82%;
@@ -61,11 +61,13 @@ a{
     border-radius: 1.5rem;
     font-family: "Source Sans 3", sans-serif;
     color: #1f1e22;
+    font-size: 1.05rem;
     font-weight: 800;
 }
 
 .mainNav{
     display: flex;
+    position: relative;
     justify-content: space-around;
     align-content: center;
     width: 100%;
@@ -95,7 +97,7 @@ a{
     margin: 0;
 }
 
-.mainOpc img{
+.imgMainOpc{
     margin: 0;
     width: 1.5rem;
 }
@@ -110,4 +112,11 @@ a{
     z-index: 1000;
     position: fixed;
     top:0;
+}
+
+.logoApp{
+    background-color: red($color: #000000);
+    margin: -0.5rem 0 0 0;
+    padding: 0;
+    width: 4rem;
 }

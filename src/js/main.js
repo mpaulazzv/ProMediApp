@@ -60,10 +60,6 @@ function init() {
 
     asignarEventosMenu();
     asignarVolver();
-    cargarSemestres();
-    mostrarSemestres();
-    mostrar_infoPerfil();
-
 
 }
 
@@ -102,12 +98,12 @@ function asignarEventosMateria() {
     let nro = 0;
     user.semestres[semestreActivo-1].materias.forEach(function(materia) {
         nro++;
-        refs["materia"+String(nro)] = document.getElementById("materia"+String(nro));
-        btns["btn_materia"+String(nro)] = document.getElementById("btn_materia"+String(nro));
+        refs["materia"+String(nro)+String(semestreActivo)] = document.getElementById("materia"+String(nro)+String(semestreActivo));
+        btns["btn_materia"+String(nro)+String(semestreActivo)] = document.getElementById("btn_materia"+String(nro)+String(semestreActivo));
         //btns["volver_semestre"+semestreActivo+"_m"+materiaActiva] = document.getElementById("volver_semestre"+semestreActivo+"_m"+materiaActiva);
 
-        if (btns["btn_materia"+String(nro)] ) {
-            btns["btn_materia"+String(nro)].addEventListener("click", cambiarSeccion);
+        if (btns["btn_materia"+String(nro)+String(semestreActivo)] ) {
+            btns["btn_materia"+String(nro)+String(semestreActivo)].addEventListener("click", cambiarSeccion);
         }
 
     ;})
@@ -164,7 +160,6 @@ function cambiarSeccion(e) {
     let seccion;
     if (e.currentTarget.className === "nav") {
         seccion = e.target.id.split("_")[1];
-
     } else {
         seccion = e.currentTarget.id.split("_")[1];
     }
@@ -173,17 +168,16 @@ function cambiarSeccion(e) {
         mostrarMaterias();
     }
     if (seccion.startsWith("materia")) {
-        materiaActiva = parseInt(seccion.replace("materia", ""), 10); 
+        materiaActiva = parseInt(seccion.slice(0, -1).replace("materia", ""), 10);
         mostrarNotas();
     }
-
+    
     cargarSeccion(seccion);
 }
 
 
 
 function cargarSeccion(seccion) {
-
 
     if (refs[seccion].classList[0] === "ventanaEmergente") {
         refs[seccion].classList.add("popUp");
@@ -270,6 +264,7 @@ function login(e) {
             cargarSeccion('alertaLogin');
         } else {
             cargarSeccion('successLogin');
+            mostrar_infoPerfil();
             cargarSemestres();
         }
     }
@@ -338,8 +333,8 @@ function mostrarSemestres() {
                 <h3 class="nombre_semestre">${user.semestres[sem].nombre}</h3>
                 <div class="semestre_body">
                     <div class="info_semestre">
-                        <p>Nro de materias: ${user.semestres[sem].nro_materias}</p>
-                        <p>Promedio: ${user.semestres[sem].promedio}</p>
+                        <p id=${"nro_mat_sem" + String(nro)}>Nro de materias: ${user.semestres[sem].nro_materias}</p>
+                        <p id=${"promedio_sem" + String(nro)}>Promedio: ${user.semestres[sem].promedio}</p>
                     </div>
                     <img src="http://127.0.0.1:3000/src/assets/arrow-more.svg" alt="" class="semboxImg">
                 </div>
@@ -350,8 +345,8 @@ function mostrarSemestres() {
                 <p class="semTitle">${user.semestres[sem].nombre}</p>
                 <div class="semBottom">
                     <div class="contBottom">
-                        <p class="semDesc">Nro.Materias: ${user.semestres[sem].nro_materias}</p>
-                        <p class="semDesc">Promedio: ${user.semestres[sem].promedio}</p>
+                        <p class="semDesc" id=${"nro_mat_home_sem"}>Nro.Materias: ${user.semestres[sem].nro_materias}</p>
+                        <p class="semDesc" id=${"promedio_home_sem"}>Promedio: ${user.semestres[sem].promedio}</p>
                     </div>
                     <img src="http://127.0.0.1:3000/src/assets/arrow-more.svg" alt="" class="semImg">
                 </div>
@@ -362,8 +357,8 @@ function mostrarSemestres() {
                 <p class="opcTitle">${user.semestres[sem].nombre}</p>
                 <div class="opcBottom">
                     <div class="opcCont">
-                        <p class="opcDesc">Nro.Materias: ${user.semestres[sem].nro_materias}</p>
-                        <p class="opcDesc">Promedio: ${user.semestres[sem].promedio}</p>
+                        <p class="opcDesc" id=${"2nro_mat_home_sem" + String(nro)}>Nro.Materias: ${user.semestres[sem].nro_materias}</p>
+                        <p class="opcDesc" id=${"2promedio_home_sem" + String(nro)}>Promedio: ${user.semestres[sem].promedio}</p>
                     </div>
                     <img src="http://127.0.0.1:3000/src/assets/arrow-more.svg" alt="" class="opcImg">
                 </div>
@@ -377,8 +372,8 @@ function mostrarSemestres() {
                         <img id=${"volver_semestres_" + String(nro)} src="http://127.0.0.1:3000/src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
                         <h1 class="semestre_titulo">${user.semestres[sem].nombre}</h1>
                         <div class="semestre_subtitulos">
-                            <h3 class="promedio_semestre">Promedio: ${user.semestres[sem].promedio}</h3>
-                            <h3 class="creditos_semestre">Creditos: ${user.semestres[sem].creditos}</h3>
+                            <h3 class="promedio_semestre" id=${"promedio_princ_sem" + String(nro)}>Promedio: ${user.semestres[sem].promedio}</h3>
+                            <h3 class="creditos_semestre" id=${"creditos_sem" + String(nro)}>Creditos: ${user.semestres[sem].creditos}</h3>
                         </div>
                     </div>
                     <div id=${"mat_sem"+String(nro)} class="materias_semestre">
@@ -401,7 +396,6 @@ function mostrarSemestres() {
     place_slider.innerHTML = out_slider;
 
     asignarEventosSemestre();
-
 }
 
 function mostrar_infoPerfil() {
@@ -459,9 +453,7 @@ function agregar_materia(e) {
         localStorage.setItem("usuario", JSON.stringify(user));
     }
 
-    actualizarSemestre();
     mostrarMaterias();
-
 }
 
 function mostrarMaterias()
@@ -478,20 +470,20 @@ function mostrarMaterias()
     materias.forEach(function(materia) {
         nro++;
         out +=`
-        <div class="materia_semestre" id=${"btn_materia"+String(nro)}>
+        <div class="materia_semestre" id=${"btn_materia"+String(nro)+String(semestreActivo)}>
             <h3 class="nombre_materia_semestre">${materia.nombre_materia}</h3>
             <img src="http://127.0.0.1:3000/src/assets/arrow-more.svg" alt="" class="opcImg">
         </div>
     `;
 
     section += `
-    <section id=${"materia"+String(nro)}>
+    <section id=${"materia"+String(nro)+String(semestreActivo)} class="ocultar">
         <div class="materia_content">
             <div class="materia_top">
             <img id="volver_semestre${semestreActivo}_m${String(nro)}" src="http://127.0.0.1:3000/src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
             <h1 class="titulo_materia">${materia.nombre_materia}</h1>
         <div class="subtitulos_materia">
-            <h3 class="promedio_materia">Promedio: ${materia.promedio}</h3>
+            <h3 class="promedio_materia" id=${"promedio_m"+String(nro)} >Promedio: ${materia.promedio}</h3>
             <h3 class="creditos_materia">Créditos: ${materia.creditos_materia}</h3>
         </div>
         <div class="nota_deseada">
@@ -502,7 +494,7 @@ function mostrarMaterias()
         <div id=${"lista_notas_sem"+String(nro)}>
 
         </div>
-        <form id='crear_nota_m${String(nro)}'>
+        <form id='crear_nota_m${String(nro)}' class='crearNotaForm'>
             <div class="detalle_nota" >
                 <input type="text" placeholder="Nombre" class="texto_nota" name="nombre_nota">
                 <input type="number" step="0.01" placeholder="Valor" class="texto_nota" name="valor_nota">
@@ -540,7 +532,6 @@ function mostrarMaterias()
     }
 
     asignarEventosMateria();
-
 }
 
 function agregar_nota(e){
@@ -559,15 +550,16 @@ function agregar_nota(e){
     }
 
     user = JSON.parse(localStorage.getItem("usuario"));
+    let materia = user.semestres[semestreActivo - 1].materias[materiaActiva -1];
+    let notas = materia.notas;
 
-    if (nombre_nota === "" || valor_nota < 0 || valor_nota > 5 || peso_nota < 0 || peso_nota > 100) {
-        alert("erro al cargar nota")
+    if (nombre_nota === "" || valor_nota < 0 || valor_nota > 5 || peso_nota < 0 || materia.porcentaje_restante==0 || materia.porcentaje_restante - peso_nota < 0) {
+        alert("Error al cargar nota")
     }
     else {
 
-        let array = user.semestres[semestreActivo - 1].materias[materiaActiva -1].notas; 
-        array.push(nota);
-        user.semestres[semestreActivo-1].materias[materiaActiva-1].notas = array;
+        notas.push(nota);
+        user.semestres[semestreActivo-1].materias[materiaActiva-1].notas = notas;
 
         localStorage.setItem("usuario", JSON.stringify(user));
     }
@@ -582,6 +574,8 @@ function mostrarNotas(){
     let place = document.querySelector('#lista_notas_sem'+String(materiaActiva));
 
 
+    console.log(semestreActivo);
+    console.log(materiaActiva);
     let out="";
     let notas = user.semestres[semestreActivo-1].materias[materiaActiva-1].notas;
 
@@ -606,22 +600,39 @@ function mostrarNotas(){
     place.innerHTML = out;
     calc_nota_necesaria();
 
-
 }
 
 function actualizarSemestre(){
     let creditos = 0;
+    let promedio = 0;
+    let prom_sem = 0;
 
     let user = JSON.parse(localStorage.getItem("usuario"));
     let materias = user.semestres[semestreActivo-1].materias;
 
     materias.forEach(function(materia) {
-        creditos = user.semestres[semestreActivo-1].creditos + materia.creditos_materia;
+        creditos += parseInt(materia.creditos_materia);
+        promedio += parseFloat(materia.promedio) * parseFloat(materia.creditos_materia);
     })
 
-    user.semestres[semestreActivo-1].nro_materias = materias.length;
-    user.semestres[semestreActivo-1].creditos = creditos;
-    localStorage.setItem("usuario", JSON.stringify(user));  
+    prom_sem = parseFloat(promedio/creditos).toFixed(2);
+
+    user.semestres[semestreActivo-1].nro_materias = parseInt(materias.length);
+    user.semestres[semestreActivo-1].creditos = parseInt(creditos);
+    user.semestres[semestreActivo-1].promedio = parseFloat(prom_sem);
+
+    document.getElementById("nro_mat_sem" + semestreActivo).innerText = "Materias: " + materias.length;
+    document.getElementById("nro_mat_home_sem").innerText = "Materias: " + materias.length;
+    document.getElementById("2nro_mat_home_sem" + semestreActivo).innerText = "Materias: " + materias.length;
+
+    document.getElementById("promedio_sem" + semestreActivo).innerText = "Promedio: " + (prom_sem);
+    document.getElementById("promedio_home_sem").innerText = "Promedio: " + (prom_sem);
+    document.getElementById("2promedio_home_sem" + semestreActivo).innerText = "Promedio: " + (prom_sem);
+    document.getElementById("promedio_princ_sem" + semestreActivo).innerText = "Promedio: " + (prom_sem);    
+
+    document.getElementById("creditos_sem" + semestreActivo).innerText = "Creditos: " + creditos;
+
+    localStorage.setItem("usuario", JSON.stringify(user));
 
 }
 
@@ -641,19 +652,35 @@ function calc_nota_necesaria(){
         notaAcumulada += (parseFloat(nota.valor_nota) * (parseFloat(nota.peso_nota) / 100));
     });
 
-    porcentajeRestante = 100 - porcentajeEvaluado;
+    if(porcentajeEvaluado < 100){
+        porcentajeRestante = 100 - porcentajeEvaluado;
 
-    let notaNecesaria = (nota_esperada - notaAcumulada / porcentajeRestante);
+        let notaNecesaria = (nota_esperada - notaAcumulada / porcentajeRestante);
 
-    materia.nota_necesaria = notaNecesaria;
-    materia.porcentaje_restante = porcentajeRestante;
+        materia.nota_necesaria = notaNecesaria;
+        materia.porcentaje_restante = porcentajeRestante;
 
-    document.getElementById("nota_necesaria_m" + materiaActiva).innerText = 
-    "Necesitas " + notaNecesaria.toFixed(2);
+        document.getElementById("nota_necesaria_m" + materiaActiva).innerText = 
+        "Necesitas " + notaNecesaria.toFixed(2);
 
-    document.getElementById("porcentaje_restante_m" + materiaActiva).innerText =
-    "En el" + porcentajeRestante + "% restante para lograr tu nota ideal";
+        document.getElementById("porcentaje_restante_m" + materiaActiva).innerText =
+        "En el " + porcentajeRestante + "% restante para lograr tu nota ideal";
+    }else{
 
+        materia.promedio = notaAcumulada.toFixed(2);
+
+        document.getElementById("nota_necesaria_m" + materiaActiva).innerText = 
+        "Tu promedio es " + notaAcumulada.toFixed(2);
+
+        document.getElementById("porcentaje_restante_m" + materiaActiva).innerText =
+        "Ya has completado el 100% de tus notas";
+
+        document.getElementById("promedio_m" + materiaActiva).innerText =
+        "Promedio: " + notaAcumulada.toFixed(2);
+        
+    }
+    
     localStorage.setItem("usuario", JSON.stringify(user));
+    actualizarSemestre();
 
 }

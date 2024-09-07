@@ -126,9 +126,9 @@
         </div>
         <nav-main class="nav"></nav-main>
     </section>
-    <section id="section_materias">
+    <div id="section_materias">
         
-    </section>
+    </div>
     <section id="crearmateria" class="ventanaEmergente crear_elemento ocultar">
         <div class="crear_elemento_content">
             <div class="div_crear_materia">
@@ -144,9 +144,7 @@
                         <input type="number" placeholder="Nro. Creditos" class="inputForm" name="creditos_materia">
                         <p class="labelForm">Nota Deseada</p>
                         <input type="number" step="0.01" min="0" placeholder="Nota Deseada" class="inputForm" name="nota_deseada">
-                        <button class="btnForm btn_crearM" type="submit" id="btn_semestre_crearmateria">
-                            <p class="btn_crear_txt">Agregar</p>
-                        </button>
+                        <input type="submit" class="btnForm" id="btn_semestre_crearmateria" value="Agregar"></input>
                     </form>
                 </div>
             </div>
@@ -163,9 +161,7 @@
                     <form id="crear_sem_form" action="/">
                         <label for="nombre_sem" class="labelForm">Nombre</label>
                         <input name="nombre_sem" type="text" placeholder="Ingrese nombre" class="inputForm" required>
-                        <button type="submit" class="btnForm btn_crear">
-                            <p class="btn_crear_txt">Agregar</p>
-                        </button>
+                        <input type="submit" class="btnForm" value="Agregar"></input>
                     </form>
                 </div>
             </div>
