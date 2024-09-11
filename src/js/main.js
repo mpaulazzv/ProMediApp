@@ -1,3 +1,6 @@
+import imagenMore from '../assets/arrow-more.svg';
+import imagenArrow from '../assets/arrow-left.svg';
+import imagenPlus from '../assets/plus.svg';
 
 let refs = [];
 let btns = [];
@@ -336,7 +339,7 @@ function mostrarSemestres() {
                         <p id=${"nro_mat_sem" + String(nro)}>Nro de materias: ${user.semestres[sem].nro_materias}</p>
                         <p id=${"promedio_sem" + String(nro)}>Promedio: ${user.semestres[sem].promedio}</p>
                     </div>
-                    <img src="http://127.0.0.1:3000/src/assets/arrow-more.svg" alt="" class="semboxImg">
+                    <img src=${imagenMore} alt="" class="semboxImg">
                 </div>
             </div>
         `;
@@ -348,7 +351,7 @@ function mostrarSemestres() {
                         <p class="semDesc" id=${"nro_mat_home_sem"}>Nro.Materias: ${user.semestres[sem].nro_materias}</p>
                         <p class="semDesc" id=${"promedio_home_sem"}>Promedio: ${user.semestres[sem].promedio}</p>
                     </div>
-                    <img src="http://127.0.0.1:3000/src/assets/arrow-more.svg" alt="" class="semImg">
+                    <img src=${imagenMore} alt="" class="semImg">
                 </div>
             </div>
         `;
@@ -360,7 +363,7 @@ function mostrarSemestres() {
                         <p class="opcDesc" id=${"2nro_mat_home_sem" + String(nro)}>Nro.Materias: ${user.semestres[sem].nro_materias}</p>
                         <p class="opcDesc" id=${"2promedio_home_sem" + String(nro)}>Promedio: ${user.semestres[sem].promedio}</p>
                     </div>
-                    <img src="http://127.0.0.1:3000/src/assets/arrow-more.svg" alt="" class="opcImg">
+                    <img src=${imagenMore} alt="" class="opcImg">
                 </div>
             </div>
         `;
@@ -369,7 +372,7 @@ function mostrarSemestres() {
             <section id=${"semestre" + String(nro)} class="ocultar">
                 <div class="semestreContent">
                     <div class="semestreTop">
-                        <img id=${"volver_semestres_" + String(nro)} src="http://127.0.0.1:3000/src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
+                        <img id=${"volver_semestres_" + String(nro)} src=${imagenArrow} alt="arrow" class="arrowLogin">
                         <h1 class="semestre_titulo">${user.semestres[sem].nombre}</h1>
                         <div class="semestre_subtitulos">
                             <h3 class="promedio_semestre" id=${"promedio_princ_sem" + String(nro)}>Promedio: ${user.semestres[sem].promedio}</h3>
@@ -381,7 +384,7 @@ function mostrarSemestres() {
                     </div>
                     <div class="btn_agregar_materia" id=${"btn_crearmateria_" + String(nro)}>
                         <h3 class="nombre_materia_semestre">Agregar nueva materia</h3>
-                        <img src="http://127.0.0.1:3000/src/assets/plus.svg" alt="" class="semaddImg">
+                        <img src=${imagenPlus} alt="" class="semaddImg">
                     </div>
                 </div>
                 <nav-main class="nav"></nav-main>
@@ -472,7 +475,7 @@ function mostrarMaterias()
         out +=`
         <div class="materia_semestre" id=${"btn_materia"+String(nro)+String(semestreActivo)}>
             <h3 class="nombre_materia_semestre">${materia.nombre_materia}</h3>
-            <img src="http://127.0.0.1:3000/src/assets/arrow-more.svg" alt="" class="opcImg">
+            <img src=${imagenMore} alt="" class="opcImg">
         </div>
     `;
 
@@ -480,7 +483,7 @@ function mostrarMaterias()
     <section id=${"materia"+String(nro)+String(semestreActivo)} class="ocultar">
         <div class="materia_content">
             <div class="materia_top">
-            <img id="volver_semestre${semestreActivo}_m${String(nro)}" src="http://127.0.0.1:3000/src/assets/arrow-left.svg" alt="arrow" class="arrowLogin">
+            <img id="volver_semestre${semestreActivo}_m${String(nro)}" src=${imagenArrow} alt="arrow" class="arrowLogin">
             <h1 class="titulo_materia">${materia.nombre_materia}</h1>
         <div class="subtitulos_materia">
             <h3 class="promedio_materia" id=${"promedio_m"+String(nro)} >Promedio: ${materia.promedio}</h3>
@@ -502,7 +505,7 @@ function mostrarMaterias()
             </div>
             <button type="submit" class="btn_agregar_nota">
                 <h3 class="nombre_materia_semestre">Agregar nueva nota</h3>
-                <img src="http://127.0.0.1:3000/src/assets/plus.svg" alt="" class="semaddImg">
+                <img src=${imagenPlus} alt="" class="semaddImg">
             </button>
         </form>
     </div>
@@ -655,16 +658,27 @@ function calc_nota_necesaria(){
     if(porcentajeEvaluado < 100){
         porcentajeRestante = 100 - porcentajeEvaluado;
 
-        let notaNecesaria = (nota_esperada - notaAcumulada / porcentajeRestante);
+        let notaNecesaria = ((nota_esperada - notaAcumulada) / (porcentajeRestante/100));
+
+        console.log(notaNecesaria);
 
         materia.nota_necesaria = notaNecesaria;
         materia.porcentaje_restante = porcentajeRestante;
 
-        document.getElementById("nota_necesaria_m" + materiaActiva).innerText = 
-        "Necesitas " + notaNecesaria.toFixed(2);
+        if(notaNecesaria.toFixed(2)<=5.0){
+            document.getElementById("nota_necesaria_m" + materiaActiva).innerText = 
+            "Necesitas " + notaNecesaria.toFixed(2);
+    
+            document.getElementById("porcentaje_restante_m" + materiaActiva).innerText =
+            "En el " + porcentajeRestante + "% restante para lograr tu nota ideal";
+        }else{
+            document.getElementById("nota_necesaria_m" + materiaActiva).innerText = 
+            "jm Complicado ..." + " Necesitas " + notaNecesaria.toFixed(2);
+    
+            document.getElementById("porcentaje_restante_m" + materiaActiva).innerText =
+            " En el " + porcentajeRestante + "% restante para lograr tu nota ideal \n";
+        }
 
-        document.getElementById("porcentaje_restante_m" + materiaActiva).innerText =
-        "En el " + porcentajeRestante + "% restante para lograr tu nota ideal";
     }else{
 
         materia.promedio = notaAcumulada.toFixed(2);
@@ -684,3 +698,46 @@ function calc_nota_necesaria(){
     actualizarSemestre();
 
 }
+
+import imagenSemestre from '../assets/semestre.svg';
+import imagenHome from '../assets/home.svg';
+import imagenPerfil from '../assets/user.svg';
+
+class navMain extends HTMLElement{
+    constructor(){
+        super();
+    }
+
+    connectedCallback(){
+        this.innerHTML = `
+        <div class="mainNav">
+            <a  class="mainOpc">
+                <div id="btn_semestres" class="opc_nav">
+                    <img src=${imagenSemestre} alt="">
+                    <p>Semestres</p>
+                </div>
+            </a>
+            <a  class="mainOpc">
+                <div id="btn_Home" class="opc_nav">
+                    <img src=${imagenHome} alt="" id="img-home">
+                    <p >Home</p>
+                </div>
+            </a>
+            <a class="mainOpc" >
+                <div id="btn_Usuario" class = "opc_nav">
+                    <img src=${imagenPerfil} alt="">
+                    <p >Perfil</p>
+                </div>
+            </a>
+        </div>
+    `;
+
+    this.addEventListener("click", (e) => {
+        if (e.target.closest("#btn_Usuario, #btn_Home, #btn_semestres")) {
+            cambiarSeccion(e);
+        }
+    });
+    }
+}
+
+window.customElements.define("nav-main", navMain);

@@ -67,7 +67,6 @@ a{
 
 .mainNav{
     display: flex;
-    position: relative;
     justify-content: space-around;
     align-content: center;
     width: 100%;
@@ -97,7 +96,7 @@ a{
     margin: 0;
 }
 
-.imgMainOpc{
+.mainOpc img{
     margin: 0;
     width: 1.5rem;
 }
@@ -114,9 +113,7 @@ a{
     top:0;
 }
 
-.logoApp{
-    background-color: red($color: #000000);
-    margin: -0.5rem 0 0 0;
-    padding: 0;
-    width: 4rem;
+.iconApp{
+    width: 5.5rem;
+    height: 5.5rem;
 }

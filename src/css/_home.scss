@@ -12,8 +12,12 @@
 }
 
 .homeTop{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 1.5rem;
     margin-top: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .homeTitle{
