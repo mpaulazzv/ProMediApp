@@ -35,7 +35,6 @@ function init() {
     //Botones para la navegabilidad
     btns["btn_login_splash"] = document.getElementById("btn_login_splash");
     btns["btn_registro_splash"] = document.getElementById("btn_registro_splash");
-    btns["btn_Home_splash"] = document.getElementById("btn_Home_splash");
     btns["btn_successLogin"] = document.getElementById("btn_successLogin");
     btns["btn_alertaRegistro"] = document.getElementById("btn_alertaRegistro");
     btns["btn_registro_login"] = document.getElementById("btn_registro_login");
@@ -118,7 +117,6 @@ function asignarEventosMenu() {
     //Eventos botones
     btns["btn_login_splash"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_splash"].addEventListener("click", cambiarSeccion);
-    btns["btn_Home_splash"].addEventListener("click", cambiarSeccion);
     btns["btn_registro_login"].addEventListener("click", cambiarSeccion);
     btns["btn_semestres_home"].addEventListener("click", cambiarSeccion);
     btns["volver_semestres"].addEventListener("click", cambiarSeccion);
@@ -162,7 +160,10 @@ function ocultar() {
 function cambiarSeccion(e) {
     let seccion;
     if (e.currentTarget.className === "nav") {
+        console.log(e.currentTarget.className);
+        console.log(e.target)
         seccion = e.target.id.split("_")[1];
+        console.log(seccion)
     } else {
         seccion = e.currentTarget.id.split("_")[1];
     }
@@ -456,6 +457,14 @@ function agregar_materia(e) {
         localStorage.setItem("usuario", JSON.stringify(user));
     }
 
+    const cerrarCrearM = document.getElementsByClassName("cancelar_crear_materia");
+
+    if(cerrarCrearM.length>0){
+        cerrarCrearM[0].id = "cerrar_semestre" + semestreActivo;
+        let btn_cerrar = document.getElementById("cerrar_semestre" + semestreActivo);
+        btn_cerrar.addEventListener("click", cambiarSeccion);
+    }
+
     mostrarMaterias();
 }
 
@@ -522,18 +531,6 @@ function mostrarMaterias()
     place.innerHTML = out;
     materiaIndv.innerHTML = section;
 
-    let cerrarCrearM = document.getElementById("static_id_cerrar");
-
-    if(cerrarCrearM){
-        cerrarCrearM.id = "cerrar_semestre" + semestreActivo;
-        let btn_cerrar = document.getElementById("cerrar_semestre" + semestreActivo);
-        btn_cerrar.addEventListener("click", cambiarSeccion);
-        cerrarCrearM = document.getElementById("cerrar_semestre" + semestreActivo);
-    }else if(cerrarCrearM){
-        let btn_cerrar = document.getElementById("cerrar_semestre" + semestreActivo);
-        btn_cerrar.addEventListener("click", cambiarSeccion);
-    }
-
     asignarEventosMateria();
 }
 
@@ -577,8 +574,7 @@ function mostrarNotas(){
     let place = document.querySelector('#lista_notas_sem'+String(materiaActiva));
 
 
-    console.log(semestreActivo);
-    console.log(materiaActiva);
+
     let out="";
     let notas = user.semestres[semestreActivo-1].materias[materiaActiva-1].notas;
 
@@ -660,8 +656,6 @@ function calc_nota_necesaria(){
 
         let notaNecesaria = ((nota_esperada - notaAcumulada) / (porcentajeRestante/100));
 
-        console.log(notaNecesaria);
-
         materia.nota_necesaria = notaNecesaria;
         materia.porcentaje_restante = porcentajeRestante;
 
@@ -713,20 +707,20 @@ class navMain extends HTMLElement{
         <div class="mainNav">
             <a  class="mainOpc">
                 <div id="btn_semestres" class="opc_nav">
-                    <img src=${imagenSemestre} alt="">
-                    <p>Semestres</p>
+                    <img src=${imagenSemestre} alt="" id="img_semestres_nav">
+                    <p id = "p_semestres_nav">Semestres</p>
                 </div>
             </a>
             <a  class="mainOpc">
                 <div id="btn_Home" class="opc_nav">
-                    <img src=${imagenHome} alt="" id="img-home">
-                    <p >Home</p>
+                    <img src=${imagenHome} alt="" id="img_Home_nav">
+                    <p id = "p_Home_nav">Home</p>
                 </div>
             </a>
             <a class="mainOpc" >
                 <div id="btn_Usuario" class = "opc_nav">
-                    <img src=${imagenPerfil} alt="">
-                    <p >Perfil</p>
+                    <img src=${imagenPerfil} alt="" id="img_Usuario_nav">
+                    <p id="p_Usuario_nav">Perfil</p>
                 </div>
             </a>
         </div>

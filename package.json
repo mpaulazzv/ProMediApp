@@ -2,7 +2,6 @@
   "name": "demo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "local": "http-server -p 3000",
     "build": "parcel build ./src/index.html",
@@ -12,10 +11,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@capacitor/cli": "^6.1.2",
     "@parcel/transformer-sass": "^2.12.0",
     "parcel": "^2.12.0"
   },
   "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/core": "^6.1.2",
     "http-server": "^14.1.1"
   }
 }
